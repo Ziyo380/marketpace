@@ -1,0 +1,16 @@
+node_modules/
+.npm-cache/
+.tmp/
+.nx/
+dist/
+coverage/
+.next/
+out/
+*.tsbuildinfo
+.env.local
+
+vite.config.*.timestamp*
+
+# Next.js
+.next
+out

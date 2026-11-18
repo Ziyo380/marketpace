@@ -1,0 +1,13 @@
+.git
+.gradle
+build
+out
+.idea
+.vscode
+*.iml
+*.log
+.env
+frontend-v2/node_modules
+frontend-v2/.nx
+frontend-v2/dist
+frontend-v2/apps/client/.next

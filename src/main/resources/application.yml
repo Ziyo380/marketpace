@@ -1,0 +1,58 @@
+
+spring:
+  application:
+    name: marketplace-backend
+  profiles:
+    default: local
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    clean-disabled: true
+    validate-migration-naming: true
+  jackson:
+    time-zone: UTC
+    serialization:
+      write-dates-as-timestamps: false
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 6MB
+
+server:
+  port: ${SERVER_PORT:8080}
+  shutdown: graceful
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+storage:
+  mode: ${STORAGE_MODE:minio}
+  endpoint: ${STORAGE_ENDPOINT:http://localhost:9000}
+  public-endpoint: ${STORAGE_PUBLIC_ENDPOINT:http://localhost:9000}
+  region: ${STORAGE_REGION:us-east-1}
+  access-key: ${STORAGE_ACCESS_KEY:minioadmin}
+  secret-key: ${STORAGE_SECRET_KEY:minioadmin}
+  bucket: ${STORAGE_BUCKET:marketplace-products}
+  read-url-expiration: ${STORAGE_READ_URL_EXPIRATION:1h}
+  max-file-size: ${STORAGE_MAX_FILE_SIZE:5MB}
+  max-images-per-product: ${STORAGE_MAX_IMAGES_PER_PRODUCT:10}
+
+order:
+  reservation-ttl: ${ORDER_RESERVATION_TTL:PT30M}
+  expiration-check-ms: ${ORDER_EXPIRATION_CHECK_MS:60000}
+
+jwt:
+  refresh-token-expiration: ${JWT_REFRESH_TOKEN_EXPIRATION:PT720H}

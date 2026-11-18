@@ -1,0 +1,96 @@
+
+name: marketplace-backend
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-marketplace}
+      POSTGRES_USER: ${DB_USERNAME:-marketplace}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-marketplace}
+    ports:
+      - "127.0.0.1:${DB_PORT:-5432}:5432"
+    volumes:
+      - marketplace-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-marketplace} -d ${DB_NAME:-marketplace}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  minio:
+    image: marketplace-minio:RELEASE.2025-09-07T16-13-09Z
+    build:
+      context: .
+      dockerfile: Dockerfile.minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${STORAGE_ACCESS_KEY:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${STORAGE_SECRET_KEY:-minioadmin}
+    ports:
+      - "127.0.0.1:${STORAGE_PORT:-9000}:9000"
+      - "127.0.0.1:${STORAGE_CONSOLE_PORT:-9001}:9001"
+    volumes:
+      - marketplace-minio-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-marketplace}
+      DB_USERNAME: ${DB_USERNAME:-marketplace}
+      DB_PASSWORD: ${DB_PASSWORD:-marketplace}
+      JWT_SECRET_BASE64: ${JWT_SECRET_BASE64:?Set JWT_SECRET_BASE64 in .env}
+      STORAGE_MODE: minio
+      STORAGE_ENDPOINT: http://minio:9000
+      STORAGE_PUBLIC_ENDPOINT: ${STORAGE_PUBLIC_ENDPOINT:-http://localhost:9000}
+      STORAGE_REGION: ${STORAGE_REGION:-us-east-1}
+      STORAGE_ACCESS_KEY: ${STORAGE_ACCESS_KEY:-minioadmin}
+      STORAGE_SECRET_KEY: ${STORAGE_SECRET_KEY:-minioadmin}
+    ports:
+      - "${SERVER_PORT:-8080}:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  customer:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend-client
+      args:
+        API_UPSTREAM: http://backend:8080
+    restart: unless-stopped
+    ports:
+      - "${CUSTOMER_PORT:-3000}:3000"
+    depends_on:
+      - backend
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend-admin
+    restart: unless-stopped
+    ports:
+      - "${DASHBOARD_PORT:-4200}:80"
+    depends_on:
+      - backend
+
+volumes:
+  marketplace-postgres-data:
+  marketplace-minio-data:

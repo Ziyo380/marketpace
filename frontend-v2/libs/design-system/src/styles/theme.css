@@ -1,0 +1,25 @@
+@theme static {
+  --color-obsidian: #09110f;
+  --color-charcoal: #101b18;
+  --color-surface: #172520;
+  --color-surface-elevated: #20322b;
+  --color-gold: #d6b16b;
+  --color-gold-hover: #e8c782;
+  --color-gold-active: #b58b43;
+  --color-ember: #45bd73;
+  --color-flame: #8fdda9;
+  --color-ivory: #f5f4ed;
+  --color-muted: #9aa9a2;
+
+  --font-display: "Bebas Neue", Impact, sans-serif;
+  --font-sans: "Manrope Variable", "Manrope", Arial, sans-serif;
+
+  --breakpoint-tablet: 48rem;
+  --breakpoint-desktop: 75rem;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+}

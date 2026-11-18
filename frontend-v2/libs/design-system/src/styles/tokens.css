@@ -1,0 +1,24 @@
+:root {
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --border-control: rgba(255, 255, 255, 0.18);
+  --glass-fill: rgba(255, 255, 255, 0.06);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  --gold-glow: 0 0 20px rgba(216, 164, 91, 0.12);
+  --gold-text-glow: 0 0 14px rgba(216, 164, 91, 0.18);
+  --surface-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  --transition-fast: 150ms ease;
+  --transition-standard: 220ms ease;
+  --content-max: 90rem;
+  --page-gutter: 1rem;
+  --status-success: #7fc99b;
+  --status-warning: #e7b96d;
+  --status-error: #ff806e;
+}
+
+@media (min-width: 48rem) {
+  :root { --page-gutter: 1.5rem; }
+}
+
+@media (min-width: 75rem) {
+  :root { --page-gutter: 3rem; }
+}

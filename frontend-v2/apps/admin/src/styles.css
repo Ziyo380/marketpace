@@ -1,0 +1,11 @@
+@import '@fontsource/bebas-neue/latin-400.css';
+@import '@fontsource-variable/manrope/wght.css';
+@import 'tailwindcss' source(none);
+@source './';
+@source '../../../libs/shared-ui/src';
+@source '../../../libs/design-system/src';
+@import '../../../libs/design-system/src/styles/theme.css';
+@import '../../../libs/design-system/src/styles/tokens.css';
+@import '../../../libs/design-system/src/styles/global-base.css';
+@import '../../../libs/design-system/src/styles/utilities.css';
+@import './dashboard.css';
