@@ -119,6 +119,9 @@ class OrderIntegrationTest {
 
         assertThat(created.status()).isEqualTo(OrderStatus.PENDING);
         assertThat(created.totalAmount()).isEqualByComparingTo("1998.00");
+        assertThat(created.currentTotalAmount()).isEqualByComparingTo("1998.00");
+        assertThat(created.sellerOrders().get(0).discountAmount()).isEqualByComparingTo("0.00");
+        assertThat(created.sellerOrders().get(0).payableAmount()).isEqualByComparingTo("1998.00");
         assertThat(created.createdAt()).isNotNull();
         assertThat(created.delivery().recipientName()).isEqualTo("Test Buyer");
         assertThat(created.delivery().addressLine()).isEqualTo("Amir Temur 10, apartment 5");
@@ -192,14 +195,19 @@ class OrderIntegrationTest {
         assertThat(created.deliveryTotalAmount()).isEqualByComparingTo("30.00");
         assertThat(created.sellerOrders().get(0).deliveryFee()).isEqualByComparingTo("30.00");
         assertThat(created.discountAmount()).isEqualByComparingTo("199.80");
+        assertThat(created.sellerOrders().get(0).discountAmount()).isEqualByComparingTo("199.80");
+        assertThat(created.sellerOrders().get(0).payableAmount()).isEqualByComparingTo("1828.20");
         assertThat(created.totalAmount()).isEqualByComparingTo("1828.20");
+        assertThat(created.currentTotalAmount()).isEqualByComparingTo("1828.20");
         OrderResponse reloaded = orderService.getMyOrder(BUYER_USERNAME, created.orderId());
         assertThat(reloaded.totalAmount()).isEqualByComparingTo("1828.20");
         assertThat(reloaded.sellerOrders().get(0).deliveryFee()).isEqualByComparingTo("30.00");
         assertThat(count("SELECT COUNT(*) FROM promocode_usages WHERE order_id = ?", created.orderId())).isEqualTo(1);
         assertThat(integer("SELECT used_count FROM promocodes WHERE code = 'SAVE10'")).isEqualTo(1);
 
-        orderCancellationService.cancelMyOrder(BUYER_USERNAME, created.orderId());
+        OrderResponse cancelled = orderCancellationService.cancelMyOrder(BUYER_USERNAME, created.orderId());
+        assertThat(cancelled.totalAmount()).isEqualByComparingTo("1828.20");
+        assertThat(cancelled.currentTotalAmount()).isEqualByComparingTo("0.00");
         assertThat(count("SELECT COUNT(*) FROM promocode_usages")).isZero();
         assertThat(integer("SELECT used_count FROM promocodes WHERE code = 'SAVE10'")).isZero();
     }
@@ -407,6 +415,57 @@ class OrderIntegrationTest {
     @Test
     void createsAndCancelsTwoStoreOrderWithoutOrphanedReservations() {
         jdbcTemplate.update("UPDATE store_delivery_zones SET delivery_fee = 20.00 WHERE store_id = ?", STORE_ID);
+        UUID secondStoreId = seedSecondStoreToCart();
+        jdbcTemplate.update("UPDATE store_delivery_zones SET delivery_fee = 30.00 WHERE store_id = ?", secondStoreId);
+
+        OrderResponse created = checkout(BUYER_USERNAME);
+        assertThat(created.sellerOrders()).hasSize(2);
+        assertThat(created.subtotalAmount()).isEqualByComparingTo("2498.00");
+        assertThat(created.deliveryTotalAmount()).isEqualByComparingTo("50.00");
+        assertThat(created.totalAmount()).isEqualByComparingTo("2548.00");
+        assertThat(created.currentTotalAmount()).isEqualByComparingTo("2548.00");
+        for (var part : created.sellerOrders()) {
+            assertThat(part.deliveryFee()).isEqualByComparingTo(
+                    part.storeId().equals(STORE_ID) ? "20.00" : "30.00");
+        }
+        assertThat(count("SELECT COUNT(*) FROM stock_reservations WHERE status = 'ACTIVE'")).isEqualTo(2);
+
+        OrderResponse cancelled = orderCancellationService.cancelMyOrder(BUYER_USERNAME, created.orderId());
+        assertThat(cancelled.totalAmount()).isEqualByComparingTo("2548.00");
+        assertThat(cancelled.currentTotalAmount()).isEqualByComparingTo("0.00");
+        assertThat(cancelled.sellerOrders()).allMatch(part -> part.status() == SellerOrderStatus.CANCELLED);
+        assertThat(count("SELECT COUNT(*) FROM stock_reservations WHERE status = 'RELEASED'")).isEqualTo(2);
+        assertThat(count("SELECT COUNT(*) FROM inventories WHERE reserved_quantity <> 0")).isZero();
+    }
+
+    @Test
+    void sellerCancellationKeepsCheckoutSnapshotAndReducesCurrentAmount() {
+        jdbcTemplate.update("UPDATE store_delivery_zones SET delivery_fee = 20.00 WHERE store_id = ?", STORE_ID);
+        UUID secondStoreId = seedSecondStoreToCart();
+        jdbcTemplate.update("UPDATE store_delivery_zones SET delivery_fee = 30.00 WHERE store_id = ?", secondStoreId);
+        promocodeService.create(new CreatePromocodeRequest("PART10", DiscountType.PERCENT,
+                new BigDecimal("10"), BigDecimal.ZERO, null, null, 1));
+
+        OrderResponse created = checkout(BUYER_USERNAME, UUID.randomUUID().toString(), "PART10");
+        assertThat(created.subtotalAmount()).isEqualByComparingTo("2498.00");
+        assertThat(created.discountAmount()).isEqualByComparingTo("249.80");
+        assertThat(created.totalAmount()).isEqualByComparingTo("2298.20");
+        var secondPart = created.sellerOrders().stream()
+                .filter(part -> part.storeId().equals(secondStoreId))
+                .findFirst().orElseThrow();
+        assertThat(secondPart.discountAmount()).isEqualByComparingTo("50.00");
+        assertThat(secondPart.payableAmount()).isEqualByComparingTo("480.00");
+
+        sellerOrderService.cancelSellerOrder("second-seller", secondPart.sellerOrderId(), "Out of stock");
+        OrderResponse remaining = orderService.getMyOrder(BUYER_USERNAME, created.orderId());
+        assertThat(remaining.status()).isEqualTo(OrderStatus.PARTIALLY_CANCELLED);
+        assertThat(remaining.totalAmount()).isEqualByComparingTo("2298.20");
+        assertThat(remaining.currentTotalAmount()).isEqualByComparingTo("1818.20");
+        assertThat(remaining.discountAmount()).isEqualByComparingTo("249.80");
+        assertThat(integer("SELECT used_count FROM promocodes WHERE code = 'PART10'")).isEqualTo(1);
+    }
+
+    private UUID seedSecondStoreToCart() {
         UUID secondSellerId = UUID.fromString("20000000-0000-0000-0000-000000000002");
         UUID secondSellerUserId = UUID.fromString("10000000-0000-0000-0000-000000000003");
         UUID secondStoreId = UUID.fromString("30000000-0000-0000-0000-000000000002");
@@ -419,7 +478,6 @@ class OrderIntegrationTest {
                 + "VALUES (?, ?, 'Second Store', 'second-store', TRUE, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)",
                 secondStoreId, secondSellerId);
         seedDeliveryZone(secondStoreId);
-        jdbcTemplate.update("UPDATE store_delivery_zones SET delivery_fee = 30.00 WHERE store_id = ?", secondStoreId);
         jdbcTemplate.update("INSERT INTO products (id,store_id,category_id,name,slug,status,price,created_at,updated_at) "
                 + "VALUES (?, ?, ?, 'Second Product', 'second-product', 'PUBLISHED', 500.00, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)",
                 secondProductId, secondStoreId, CATEGORY_ID);
@@ -429,22 +487,7 @@ class OrderIntegrationTest {
         jdbcTemplate.update("INSERT INTO cart_items (id,cart_id,product_id,quantity,created_at,updated_at) "
                 + "VALUES (?, ?, ?, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)",
                 UUID.randomUUID(), CART_ID, secondProductId);
-
-        OrderResponse created = checkout(BUYER_USERNAME);
-        assertThat(created.sellerOrders()).hasSize(2);
-        assertThat(created.subtotalAmount()).isEqualByComparingTo("2498.00");
-        assertThat(created.deliveryTotalAmount()).isEqualByComparingTo("50.00");
-        assertThat(created.totalAmount()).isEqualByComparingTo("2548.00");
-        for (var part : created.sellerOrders()) {
-            assertThat(part.deliveryFee()).isEqualByComparingTo(
-                    part.storeId().equals(STORE_ID) ? "20.00" : "30.00");
-        }
-        assertThat(count("SELECT COUNT(*) FROM stock_reservations WHERE status = 'ACTIVE'")).isEqualTo(2);
-
-        OrderResponse cancelled = orderCancellationService.cancelMyOrder(BUYER_USERNAME, created.orderId());
-        assertThat(cancelled.sellerOrders()).allMatch(part -> part.status() == SellerOrderStatus.CANCELLED);
-        assertThat(count("SELECT COUNT(*) FROM stock_reservations WHERE status = 'RELEASED'")).isEqualTo(2);
-        assertThat(count("SELECT COUNT(*) FROM inventories WHERE reserved_quantity <> 0")).isZero();
+        return secondStoreId;
     }
 
     private void seedOrderData(int quantity) {
@@ -502,6 +545,8 @@ class OrderIntegrationTest {
     }
 
     private void cleanDatabase() {
+        jdbcTemplate.update("DELETE FROM shipment_status_history");
+        jdbcTemplate.update("DELETE FROM shipments");
         jdbcTemplate.update("DELETE FROM promocode_usages");
         jdbcTemplate.update("DELETE FROM reviews");
         jdbcTemplate.update("DELETE FROM favorites");

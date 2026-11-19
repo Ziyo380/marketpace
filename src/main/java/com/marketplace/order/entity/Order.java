@@ -40,6 +40,10 @@ public class Order extends BaseEntity {
     @Column(name = "total_amount", nullable = false, precision = 19, scale = 2)
     private BigDecimal totalAmount;
 
+    // The original checkout total stays unchanged when a seller part is cancelled.
+    @Column(name = "current_total_amount", precision = 19, scale = 2)
+    private BigDecimal currentTotalAmount;
+
     @Column(name = "subtotal_amount", nullable = false, precision = 19, scale = 2)
     private BigDecimal subtotalAmount;
 

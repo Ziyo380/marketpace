@@ -99,7 +99,6 @@ public class PromocodeService {
         BigDecimal discount = discount(promo, subtotal);
         order.setPromocode(promo);
         order.setDiscountAmount(discount);
-        order.setTotalAmount(subtotal.subtract(discount));
         promo.setUsedCount(promo.getUsedCount() + 1);
         PromocodeUsage usage = new PromocodeUsage();
         usage.setPromocode(promo);

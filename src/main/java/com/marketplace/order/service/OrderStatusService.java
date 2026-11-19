@@ -4,6 +4,7 @@ import com.marketplace.common.exception.BusinessRuleException;
 import com.marketplace.common.exception.ConflictException;
 import com.marketplace.common.exception.ResourceNotFoundException;
 import com.marketplace.inventory.service.StockReservationService;
+import com.marketplace.delivery.service.ShipmentService;
 import com.marketplace.order.dto.response.OrderResponse;
 import com.marketplace.order.entity.Order;
 import com.marketplace.order.entity.OrderStatus;
@@ -25,6 +26,8 @@ public class OrderStatusService {
     private final OrderMapper orderMapper;
     private final StockReservationService stockReservationService;
     private final OrderHistoryService orderHistory;
+    private final ShipmentService shipmentService;
+    private final OrderStatusAggregationService aggregation;
 
     @Transactional
     public OrderResponse confirmOrder(UUID orderId) {
@@ -51,11 +54,10 @@ public class OrderStatusService {
                     SellerOrderStatus.CONFIRMED.name(), "SYSTEM", "Order confirmed");
             part.setStatus(SellerOrderStatus.CONFIRMED);
             part.setConfirmedAt(Instant.now());
+            shipmentService.createSystemShipment(part);
         }
 
-        orderHistory.record(order, null, order.getStatus().name(),
-                OrderStatus.CONFIRMED.name(), "SYSTEM", "Order confirmed");
-        order.setStatus(OrderStatus.CONFIRMED);
+        aggregation.recalculate(order, "SYSTEM", "Order confirmed");
         Order savedOrder = orderRepository.saveAndFlush(order);
         return orderMapper.toOrderResponse(savedOrder);
     }

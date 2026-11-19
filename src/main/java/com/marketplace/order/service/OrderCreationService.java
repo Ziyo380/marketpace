@@ -45,6 +45,7 @@ public class OrderCreationService {
     private final StockReservationService  stockReservationService;
     private final OrderHistoryService orderHistory;
     private final PromocodeService promocodeService;
+    private final OrderPricingService orderPricingService;
     private final ProductVariantRepository variantRepository;
     private final DeliveryAvailabilityService  deliveryAvailabilityService;
     @Value("${order.reservation-ttl:PT30M}")
@@ -185,10 +186,8 @@ public class OrderCreationService {
 
         if (promocode != null && !promocode.isBlank()) {
             promocodeService.apply(promocode, subtotalAmount, user, savedOrder);
-            savedOrder.setTotalAmount(savedOrder.getSubtotalAmount()
-                    .add(savedOrder.getDeliveryTotalAmount())
-                    .subtract(savedOrder.getDiscountAmount()));
         }
+        orderPricingService.priceCheckout(savedOrder);
 
         orderHistory.record(savedOrder, null, null, OrderStatus.PENDING.name(), "CUSTOMER", "Order created");
         for (SellerOrder part : savedOrder.getSellerOrders()) {

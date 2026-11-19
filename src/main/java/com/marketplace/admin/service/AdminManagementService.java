@@ -43,7 +43,7 @@ public class AdminManagementService {
     @Transactional(readOnly = true)
     public PlatformStatisticsResponse statistics() {
         return new PlatformStatisticsResponse(users.count(), sellers.count(), stores.count(),
-                products.count(), orders.count(), orders.countByStatus(OrderStatus.CONFIRMED),
+                products.count(), orders.count(), orders.countByStatusIn(java.util.List.of(OrderStatus.CONFIRMED, OrderStatus.IN_DELIVERY, OrderStatus.PARTIALLY_DELIVERED, OrderStatus.DELIVERED, OrderStatus.DELIVERY_FAILED)),
                 reviews.count());
     }
 

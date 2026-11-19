@@ -12,6 +12,7 @@ import { AuthDialog } from '../features/auth/AuthDialog';
 import { CartDrawer } from '../features/cart/CartDrawer';
 import { AccountDrawer } from '../features/account/AccountDrawer';
 import { fallbackProductImage } from '../features/catalog/product-images';
+import { useLiveRefresh } from '@makon/shared-ui';
 
 const initialFilters: CatalogFilters = { search: '', categoryId: 'all', minPrice: '', maxPrice: '', sort: 'createdAt,desc', storeSlug: 'all', availableOnly: 'false' };
 
@@ -28,6 +29,7 @@ export function MarketplaceApp({ initialPanel = 'home' }: { initialPanel?: Initi
   const [pageIndex, setPageIndex] = useState(0);
   const [hasMore, setHasMore] = useState(false);
   const catalogRequest = useRef(0);
+  const appliedFilters = useRef(initialFilters);
   const [apiOnline, setApiOnline] = useState(false);
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [cart, setCart] = useState<Cart>(emptyCart);
@@ -61,11 +63,14 @@ export function MarketplaceApp({ initialPanel = 'home' }: { initialPanel?: Initi
     setFavorites(new Set(page.content.map((item) => item.product.id)));
   }
 
-  async function loadCatalog(nextFilters = filters, nextPage = 0) {
+  useLiveRefresh(async () => { if (!loading && !loadingMore) await loadCatalog(appliedFilters.current, 0, true); });
+
+  async function loadCatalog(nextFilters = filters, nextPage = 0, background = false) {
+    if (!background && nextPage === 0) appliedFilters.current = nextFilters;
     const requestId = ++catalogRequest.current;
-    if (nextPage === 0) setLoading(true); else setLoadingMore(true);
+    if (!background) { if (nextPage === 0) setLoading(true); else setLoadingMore(true); }
     try {
-      const [categoryList, storePage, page] = await Promise.all([api.categories(), api.stores(), api.products({ ...nextFilters, availableOnly: nextFilters.availableOnly === 'true', page: nextPage, size: 12 })]);
+      const [categoryList, storePage, page] = await Promise.all([api.categories(), api.stores(), api.products({ ...nextFilters, availableOnly: nextFilters.availableOnly === 'true', page: nextPage, size: background ? Math.max(products.length, 12) : 12 })]);
       const enriched = await Promise.all(page.content.map(async (product) => {
         try {
           const images = await api.publicProductImages(product.storeSlug, product.slug);
@@ -77,9 +82,10 @@ export function MarketplaceApp({ initialPanel = 'home' }: { initialPanel?: Initi
       setCategories(categoryList);
       setStores(storePage.content);
       setProducts((current) => nextPage === 0 ? enriched : [...current, ...enriched]);
-      setTotalElements(page.totalElements); setPageIndex(page.number); setHasMore(!page.last); setApiOnline(true);
-    } catch (error) { if (requestId === catalogRequest.current) { setApiOnline(false); setToast(error instanceof Error ? error.message : 'Не удалось загрузить каталог'); } }
-    finally { if (requestId === catalogRequest.current) { setLoading(false); setLoadingMore(false); } }
+      setSelected((current) => current ? enriched.find((item) => item.id === current.id) ?? current : null);
+      setTotalElements(page.totalElements); if (!background) setPageIndex(page.number); setHasMore(!page.last); setApiOnline(true);
+    } catch (error) { if (requestId === catalogRequest.current) { setApiOnline(false); if (!background) setToast(error instanceof Error ? error.message : 'Не удалось загрузить каталог'); } }
+    finally { if (!background && requestId === catalogRequest.current) { setLoading(false); setLoadingMore(false); } }
   }
 
   async function toggleFavorite(product: Product) {

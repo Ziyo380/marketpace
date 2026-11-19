@@ -1,3 +1,5 @@
+@import '../../../libs/shared-ui/src/shipment-history.css';
+
 .dashboard-shell { min-height: 100vh; display: grid; grid-template-columns: 16rem 1fr; background: var(--color-obsidian); }
 .dashboard-sidebar { position: sticky; top: 0; height: 100vh; padding: 1.4rem 1rem; display: flex; flex-direction: column; border-right: 1px solid var(--border-subtle); background: var(--color-charcoal); }
 .dashboard-brand, .login-brand { display: inline-flex; align-items: center; gap: .7rem; color: var(--color-ivory); text-decoration: none; }
@@ -195,3 +197,22 @@
 .category-admin-list article > button { width: 2.2rem; height: 2.2rem; display: grid; place-items: center; border: 1px solid var(--border-control); border-radius: .55rem; color: var(--color-ivory); background: transparent; }
 @media (max-width: 64rem) { .dashboard-shell { grid-template-columns: 5rem 1fr; } .dashboard-sidebar { padding-inline: .55rem; } .dashboard-brand > div, .dashboard-user span, .dashboard-sidebar nav button:not(.active), .dashboard-sidebar nav button { font-size: 0; } .dashboard-sidebar nav button svg, .customer-link svg, .dashboard-logout svg { font-size: 1.1rem; } .customer-link, .dashboard-logout { justify-content: center; font-size: 0; } .dashboard-user { justify-content: center; padding: .5rem; } .metric-grid { grid-template-columns: 1fr 1fr; } .products-layout { grid-template-columns: 1fr; } .products-layout .form-card { position: static; } .dashboard-login { grid-template-columns: 1fr; } .dashboard-login > section { min-height: 36rem; } }
 @media (max-width: 44rem) { .dashboard-shell { display: block; } .dashboard-sidebar { position: sticky; z-index: 10; width: 100%; height: auto; padding: .5rem; flex-direction: row; align-items: center; border-right: 0; border-bottom: 1px solid var(--border-subtle); } .dashboard-user, .customer-link { display: none; } .dashboard-sidebar nav { margin: 0 0 0 auto; display: flex; } .dashboard-sidebar nav button { width: 2.7rem; justify-content: center; } .dashboard-logout { margin: 0; } .dashboard-main { padding: 1rem; } .welcome-card > svg, .moderation-hero > svg { display: none; } .metric-grid, .quick-grid, .status-grid { grid-template-columns: 1fr; } .form-card form { grid-template-columns: 1fr; } .form-card .full { grid-column: auto; } .stock-card { grid-template-columns: 1fr 1fr 1fr; } .media-card > div { grid-template-columns: 1fr 1fr; } .seller-queue > article { grid-template-columns: auto 1fr auto; } .seller-queue article button { grid-row: 2; } .dashboard-login > section { min-height: 25rem; padding: 1.5rem; } .dashboard-login > form { margin-block: 1rem; } .seller-order-card__cancel { flex-wrap: wrap; } .seller-order-card__cancel label { flex-basis: 100%; } }
+.shipment-tools { margin: 1rem 0; padding: 1rem; border: 1px solid var(--border-control); border-radius: .8rem; background: var(--color-panel, #192126); }
+.shipment-tools header, .delivery-zones > article { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.shipment-tools form { display: grid; gap: .7rem; margin-top: 1rem; }
+.shipment-tools label { display: grid; gap: .4rem; }
+.shipment-tools input, .shipment-tools textarea { width: 100%; padding: .7rem; border: 1px solid var(--border-control); border-radius: .4rem; background: transparent; color: inherit; }
+.shipment-tools button, .seller-order-card details button, .delivery-zones > article button { padding: .6rem .9rem; border: 1px solid var(--border-control); border-radius: .5rem; color: inherit; background: transparent; cursor: pointer; }
+.shipment-status { display: inline-block; padding: .4rem .7rem; margin: .5rem 0; border-radius: 2rem; background: #36434a; }
+.shipment-status[data-status="DELIVERED"] { background: #1c5b43; }
+.shipment-status[data-status="DELIVERY_FAILED"], [role="alert"] { color: #efad99; }
+.delivery-zones > article { padding: .8rem 0; border-bottom: 1px solid var(--border-control); }
+.delivery-zones > p, .order-pricing, .shipment-tools p, .stock-history p { font-size: .85rem; line-height: 1.6; overflow-wrap: anywhere; }
+.seller-order-card details { margin: 1rem 0; }
+.seller-order-card summary, .stock-history summary { cursor: pointer; padding: .5rem 0; }
+.stock-history { max-height: 20rem; overflow: auto; }
+button:disabled { cursor: wait; opacity: .55; }
+.media-card article button:nth-of-type(1) { left: .25rem; right: auto; }
+.media-card article button:nth-of-type(2) { left: 2.15rem; right: auto; }
+.media-card article { min-width: 8rem; }
+.media-card > div { grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); }

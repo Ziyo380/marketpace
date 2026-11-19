@@ -3,6 +3,7 @@ package com.marketplace.order.service;
 import com.marketplace.common.exception.BusinessRuleException;
 import com.marketplace.common.exception.ConflictException;
 import com.marketplace.common.exception.ResourceNotFoundException;
+import com.marketplace.delivery.service.ShipmentService;
 import com.marketplace.inventory.service.StockReservationService;
 import com.marketplace.order.dto.response.SellerOrderResponse;
 import com.marketplace.order.dto.response.OrderHistoryResponse;
@@ -35,6 +36,9 @@ public class SellerOrderService {
     private final OrderHistoryService orderHistory;
     private final OrderStatusHistoryRepository historyRepository;
     private final PromocodeService promocodeService;
+    private final OrderPricingService orderPricingService;
+    private final ShipmentService shipmentService;
+    private final OrderStatusAggregationService aggregation;
 
     @Transactional
     public SellerOrderResponse confirmSellerOrder(String username, UUID sellerOrderId){
@@ -57,11 +61,8 @@ public class SellerOrderService {
                 SellerOrderStatus.CONFIRMED.name(), "SELLER", "Seller confirmed order");
         sellerOrder.setStatus(SellerOrderStatus.CONFIRMED);
         sellerOrder.setConfirmedAt(Instant.now());
-        OrderStatus previousOrderStatus = sellerOrder.getOrder().getStatus();
-        updateOrderStatus(sellerOrder.getOrder());
-        orderHistory.record(sellerOrder.getOrder(), null, previousOrderStatus.name(),
-                sellerOrder.getOrder().getStatus().name(), "SELLER", "Seller confirmed order");
         SellerOrder savedOrder=sellerOrderRepository.saveAndFlush(sellerOrder);
+        shipmentService.createShipment(username,savedOrder.getId());
         return sellerOrderMapper.toSellerOrderResponse(savedOrder);
     }
 
@@ -91,10 +92,8 @@ public class SellerOrderService {
         sellerOrder.setStatus(SellerOrderStatus.CANCELLED);
         sellerOrder.setCancelledAt(Instant.now());
         sellerOrder.setCancellationReason(reason.trim());
-        OrderStatus previousOrderStatus = sellerOrder.getOrder().getStatus();
-        updateOrderStatus(sellerOrder.getOrder());
-        orderHistory.record(sellerOrder.getOrder(), null, previousOrderStatus.name(),
-                sellerOrder.getOrder().getStatus().name(), "SELLER", reason.trim());
+        orderPricingService.recalculateCurrentTotal(sellerOrder.getOrder());
+        aggregation.recalculate(sellerOrder.getOrder(), "SELLER", reason.trim());
         if (sellerOrder.getOrder().getStatus() == OrderStatus.CANCELLED) {
             promocodeService.release(sellerOrder.getOrder());
         }
@@ -137,36 +136,6 @@ public class SellerOrderService {
 
 
 
-
-    private void updateOrderStatus(Order order){
-        List<SellerOrder> sellerOrders=order.getSellerOrders();
-
-        if (sellerOrders.isEmpty()){
-            throw new BusinessRuleException("Order has no seller orders");
-        }
-
-        boolean allCancelled=sellerOrders.stream()
-                .allMatch(sellerOrder->sellerOrder.getStatus()==SellerOrderStatus.CANCELLED);
-        boolean anyCancelled=sellerOrders.stream()
-                .anyMatch(sellerOrder->sellerOrder.getStatus()==SellerOrderStatus.CANCELLED);
-        boolean allConfirmed=sellerOrders.stream()
-                .allMatch(sellerOrder->sellerOrder.getStatus()==SellerOrderStatus.CONFIRMED);
-        boolean anyConfirmed=sellerOrders.stream()
-                .anyMatch(sellerOrder->sellerOrder.getStatus()==SellerOrderStatus.CONFIRMED);
-
-        if (allCancelled){
-            order.setStatus(OrderStatus.CANCELLED);
-        } else if (anyCancelled) {
-            order.setStatus(OrderStatus.PARTIALLY_CANCELLED);
-
-        } else if (allConfirmed) {
-            order.setStatus(OrderStatus.CONFIRMED);
-        }  else if (anyConfirmed) {
-            order.setStatus(OrderStatus.PROCESSING);
-        } else  {
-            order.setStatus(OrderStatus.PENDING);
-        }
-    }
 
     private SellerOrder loadForUpdate(UUID sellerOrderId) {
         UUID orderId = sellerOrderRepository.findOrderId(sellerOrderId)

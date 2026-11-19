@@ -62,6 +62,18 @@ export type Cart = { cartId: string | null; items: CartItem[]; totalItems: numbe
 export type OrderItem = { itemId: string; productId: string; variantId?: string | null; sku?: string | null; productName: string; quantity: number; unitPrice: number; subtotal: number };
 export type DeliveryDetails = { recipientName: string; recipientPhone: string; region: string; city: string; addressLine: string };
 export type DeliveryRegion = { code: string; name: string };
+export type StoreDeliveryZone = { id: string; storeId: string; regionCode: string; regionName: string; deliveryFee: number; minDeliveryDays: number; maxDeliveryDays: number; active: boolean };
+export type ShipmentStatus = 'CREATED' | 'PACKING' | 'READY_FOR_DISPATCH' | 'IN_TRANSIT' | 'DELIVERED' | 'DELIVERY_FAILED';
+export type Shipment = { id: string; sellerOrderId: string; status: ShipmentStatus; carrierName: string | null; trackingNumber: string | null; shippedAt: string | null; deliveredAt: string | null; failureReason: string | null };
+export type ShipmentHistory = { id: string; shipmentId: string; fromStatus: ShipmentStatus | null; toStatus: ShipmentStatus; actorType: 'SELLER' | 'SYSTEM' | 'ADMIN'; actorUsername: string | null; changedAt: string; details: string | null };
+export const shipmentLabels: Record<ShipmentStatus, string> = { CREATED: 'Ожидает сборки', PACKING: 'Собирается', READY_FOR_DISPATCH: 'Готова к отправке', IN_TRANSIT: 'В пути', DELIVERED: 'Доставлена', DELIVERY_FAILED: 'Не удалось доставить' };
+export type OrderHistory = { id: string; sellerOrderId?: string; previousStatus?: string; newStatus: string; actor: string; reason?: string; createdAt: string };
+export const orderStatusLabels: Record<string, string> = {
+  PENDING: 'Ожидает подтверждения', PROCESSING: 'Подтверждён частично', CONFIRMED: 'Подтверждён',
+  PARTIALLY_CANCELLED: 'Частично отменён', CANCELLED: 'Отменён', IN_DELIVERY: 'В доставке',
+  PARTIALLY_DELIVERED: 'Частично доставлен', DELIVERED: 'Доставлен', DELIVERY_FAILED: 'Проблема с доставкой',
+};
+export type InventoryMovement = { id: string; type: string; quantityDelta: number; reservedDelta: number; quantityAfter: number; reservedAfter: number; createdAt: string };
 export type SellerOrder = {
   sellerOrderId: string;
   orderId: string;
@@ -69,12 +81,17 @@ export type SellerOrder = {
   status: string;
   items: OrderItem[];
   totalAmount: number;
+  discountAmount: number | null;
+  payableAmount: number | null;
+  deliveryFee: number | null;
+  minDeliveryDays: number | null;
+  maxDeliveryDays: number | null;
   confirmedAt?: string | null;
   cancelledAt?: string | null;
   cancellationReson?: string | null;
   delivery?: DeliveryDetails | null;
 };
-export type Order = { orderId: string; status: string; sellerOrders: SellerOrder[]; totalAmount: number; subtotalAmount: number; discountAmount: number; promocode?: string | null; delivery?: DeliveryDetails | null; createdAt: string };
+export type Order = { orderId: string; status: string; sellerOrders: SellerOrder[]; totalAmount: number; currentTotalAmount: number | null; subtotalAmount: number; deliveryTotalAmount: number; discountAmount: number; promocode?: string | null; delivery?: DeliveryDetails | null; createdAt: string };
 
 export const emptyCart: Cart = { cartId: null, items: [], totalItems: 0, totalPrice: 0 };
 const TOKEN_KEY = 'makon_access_token';
@@ -136,6 +153,7 @@ export async function request<T>(path: string, options: RequestOptions = {}): Pr
       ? options.body as FormData
       : JSON.stringify(options.body);
   let response = await fetch(path, {
+    cache: 'no-store',
     ...options,
     headers,
     body,
@@ -144,7 +162,7 @@ export async function request<T>(path: string, options: RequestOptions = {}): Pr
     refreshPromise ??= refreshSession().finally(() => { refreshPromise = null; });
     if (await refreshPromise) {
       headers.set('Authorization', `Bearer ${authStore.get()}`);
-      response = await fetch(path, { ...options, headers, body });
+      response = await fetch(path, { cache: 'no-store', ...options, headers, body });
     }
   }
   const contentType = response.headers.get('content-type') ?? '';
@@ -179,6 +197,18 @@ export const api = {
   removeFavorite: (productId: string) => request<void>(`/api/v1/favorites/${productId}`, { method: 'DELETE' }),
   categories: () => request<Category[]>('/api/v1/categories'),
   deliveryRegions: () => request<DeliveryRegion[]>('/api/v1/delivery/regions'),
+  storeDeliveryZones: (storeId: string) => request<StoreDeliveryZone[]>(`/api/v1/seller/stores/${storeId}/delivery-zones`),
+  createDeliveryZone: (storeId: string, body: { regionCode: string; deliveryFee: number; minDeliveryDays: number; maxDeliveryDays: number }) => request<StoreDeliveryZone>(`/api/v1/seller/stores/${storeId}/delivery-zones`, { method: 'POST', body }),
+  toggleDeliveryZone: (storeId: string, regionCode: string, active: boolean) => request<StoreDeliveryZone>(`/api/v1/seller/stores/${storeId}/delivery-zones/${encodeURIComponent(regionCode)}/status`, { method: 'PATCH', body: { active } }),
+  customerShipments: (orderId: string) => request<Shipment[]>(`/api/v1/orders/${orderId}/shipments`),
+  sellerShipment: (id: string) => request<Shipment>(`/api/v1/seller/orders/${id}/shipment`),
+  sellerShipmentHistory: (id: string) => request<ShipmentHistory[]>(`/api/v1/seller/orders/${id}/shipment/history`),
+  customerShipmentHistory: (orderId: string, shipmentId: string) => request<ShipmentHistory[]>(`/api/v1/orders/${orderId}/shipments/${shipmentId}/history`),
+  prepareShipment: (id: string, targetStatus: 'PACKING' | 'READY_FOR_DISPATCH') => request<Shipment>(`/api/v1/seller/orders/${id}/shipment`, { method: 'PATCH', body: { targetStatus } }),
+  dispatchShipment: (id: string, body: { carrierName?: string; trackingNumber?: string }) => request<Shipment>(`/api/v1/seller/orders/${id}/shipment/dispatch`, { method: 'POST', body }),
+  confirmDelivery: (id: string) => request<Shipment>(`/api/v1/seller/orders/${id}/shipment/confirm-delivery`, { method: 'POST' }),
+  failDelivery: (id: string, failureReason: string) => request<Shipment>(`/api/v1/seller/orders/${id}/shipment/delivery-failed`, { method: 'POST', body: { failureReason } }),
+  sellerOrderHistory: (id: string) => request<OrderHistory[]>(`/api/v1/seller/orders/${id}/history`),
   createCategory: (body: { name: string; slug: string; description?: string; parentId?: string | null }) => request<Category>('/api/v1/categories', { method: 'POST', body }),
   updateCategory: (id: string, body: { name: string; slug: string; description?: string; active: boolean; parentId?: string | null }) => request<Category>(`/api/v1/categories/${id}`, { method: 'PUT', body }),
   deactivateCategory: (id: string) => request<void>(`/api/v1/categories/${id}`, { method: 'DELETE' }),
@@ -228,11 +258,16 @@ export const api = {
   productReviews: (productId: string) => request<PageResponse<Review>>(`/api/v1/reviews/products/${productId}?size=20`),
   productRating: (productId: string) => request<ProductRating>(`/api/v1/reviews/products/${productId}/rating`),
   createReview: (productId: string, rating: number, comment: string) => request<Review>('/api/v1/reviews', { method: 'POST', body: { productId, rating, comment } }),
+  myReviews: (page = 0) => request<PageResponse<Review>>(`/api/v1/reviews/me?${params({ page, size: 20, sort: 'createdAt,desc' })}`),
+  updateReview: (id: string, rating: number, comment: string) => request<Review>(`/api/v1/reviews/${id}`, { method: 'PUT', body: { rating, comment } }),
+  deleteReview: (id: string) => request<void>(`/api/v1/reviews/${id}`, { method: 'DELETE' }),
   myVariants: (productId: string) => request<ProductVariant[]>(`/api/v1/products/me/${productId}/variants`),
   createVariant: (productId: string, body: { name: string; sku: string; price: number }) => request<ProductVariant>(`/api/v1/products/me/${productId}/variants`, { method: 'POST', body }),
   updateVariant: (productId: string, variantId: string, body: { name: string; price: number; active: boolean }) => request<ProductVariant>(`/api/v1/products/me/${productId}/variants/${variantId}`, { method: 'PUT', body }),
   changeVariantStock: (productId: string, variantId: string, kind: 'add' | 'remove', amount: number) => request<ProductVariant>(`/api/v1/products/me/${productId}/variants/${variantId}/${kind}-stock`, { method: 'POST', body: { amount } }),
   inventory: (productId: string) => request<Inventory>(`/api/v1/inventory/products/${productId}`),
+  inventoryMovements: (productId: string) => request<InventoryMovement[]>(`/api/v1/inventory/products/${productId}/movements`),
+  reorderImages: (productId: string, imageIds: string[]) => request<ProductImage[]>(`/api/v1/products/me/${productId}/images/order`, { method: 'PUT', body: { imageIds } }),
   addStock: (productId: string, amount: number) => request<Inventory>(`/api/v1/inventory/products/${productId}/add-stock`, { method: 'POST', body: { amount } }),
   removeStock: (productId: string, amount: number) => request<Inventory>(`/api/v1/inventory/products/${productId}/remove-stock`, { method: 'POST', body: { amount } }),
   myProductImages: (productId: string) => request<ProductImage[]>(`/api/v1/products/me/${productId}/images`),

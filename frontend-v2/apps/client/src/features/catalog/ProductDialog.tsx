@@ -2,13 +2,15 @@
 
 import { type FormEvent, useEffect, useState } from 'react';
 import { FiCheck, FiHeart, FiMinus, FiPlus, FiShoppingBag, FiX } from 'react-icons/fi';
-import { api, formatPrice, type Product, type ProductVariant, type Review, type ProductRating } from '@makon/api-client';
+import { api, formatPrice, type Product, type ProductVariant, type Review, type ProductRating, type ProductImage } from '@makon/api-client';
 import { fallbackProductImage } from './product-images';
 
 type Props = { product: Product; favorite: boolean; onFavorite: () => void; onAdd: (quantity: number, variantId?: string) => void; onToast: (message: string) => void; onClose: () => void };
 
 export function ProductDialog({ product, favorite, onFavorite, onAdd, onToast, onClose }: Props) {
   const [quantity, setQuantity] = useState(1);
+  const [images, setImages] = useState<ProductImage[]>([]);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [variants, setVariants] = useState<ProductVariant[]>([]);
   const [variantId, setVariantId] = useState('');
   const [loadingVariants, setLoadingVariants] = useState(true);
@@ -34,6 +36,11 @@ export function ProductDialog({ product, favorite, onFavorite, onAdd, onToast, o
       .catch(() => { if (current) setReviews([]); });
     return () => { current = false; };
   }, [product.id]);
+  useEffect(() => {
+    let current = true; setImages([]); setSelectedImage(null);
+    api.publicProductImages(product.storeSlug, product.slug).then((result) => { if (current) setImages(result); }).catch(() => { if (current) setImages([]); });
+    return () => { current = false; };
+  }, [product.storeSlug, product.slug]);
   async function submitReview(event: FormEvent) {
     event.preventDefault(); setSendingReview(true);
     try { await api.createReview(product.id, rating, comment.trim()); setComment(''); onToast('Отзыв отправлен на модерацию'); }
@@ -43,11 +50,11 @@ export function ProductDialog({ product, favorite, onFavorite, onAdd, onToast, o
   const selectedVariant = variants.find((item) => item.id === variantId);
   const activeVariants = variants.filter((item) => item.active);
   const available = selectedVariant?.availableQuantity;
-  const image = product.primaryImageUrl || fallbackProductImage(product);
+  const image = selectedImage || product.primaryImageUrl || fallbackProductImage(product);
   return <div className="overlay" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
     <section className="product-dialog" role="dialog" aria-modal="true" aria-labelledby="product-name">
       <button className="icon-button dialog-close" onClick={onClose} aria-label="Закрыть"><FiX /></button>
-      <div className="product-dialog__image"><img src={image} alt={product.name} onError={(event) => { event.currentTarget.src = fallbackProductImage(product); }} /></div>
+      <div className="product-dialog__image"><img src={image} alt={product.name} onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = fallbackProductImage(product); }} />{images.length > 1 && <div className="product-thumbnails">{images.map((image) => <button key={image.id} aria-label={image.originalFilename} aria-pressed={selectedImage === image.url} onClick={() => setSelectedImage(image.url)}><img src={image.url} alt="" /></button>)}</div>}</div>
       <div className="product-dialog__copy"><p className="eyebrow"><FiCheck />Опубликован · {product.storeSlug}</p><h2 id="product-name">{product.name}</h2><p>{product.description || 'Описание товара скоро появится.'}</p><strong>{formatPrice(selectedVariant?.price ?? product.price)}</strong>
         {loadingVariants && <p>Загружаем варианты…</p>}
         {variantError && <p role="alert">{variantError}</p>}

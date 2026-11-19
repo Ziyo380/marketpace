@@ -22,12 +22,12 @@ public interface OrderRepository extends JpaRepository<Order, UUID> {
     @Query("select o from Order o where o.id = :orderId")
     Optional<Order> findByIdForUpdate(@Param("orderId") UUID orderId);
 
-    @Query("select o.id from Order o where o.expiresAt <= :now and o.status in :statuses "
+    @Query("select o.id from Order o where o.expiresAt <= :now "
             + "and exists (select 1 from SellerOrder so where so.order = o and so.status = :pendingStatus)")
     List<UUID> findExpiredIds(@Param("now") Instant now,
-            @Param("statuses") List<com.marketplace.order.entity.OrderStatus> statuses,
             @Param("pendingStatus") com.marketplace.order.entity.SellerOrderStatus pendingStatus);
 
     Page<Order> findAllByBuyer_Id(UUID buyerId, Pageable pageable);
     long countByStatus(com.marketplace.order.entity.OrderStatus status);
+    long countByStatusIn(List<com.marketplace.order.entity.OrderStatus> statuses);
 }

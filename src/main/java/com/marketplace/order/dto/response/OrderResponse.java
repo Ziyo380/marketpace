@@ -16,6 +16,8 @@ public record OrderResponse(
 
         BigDecimal totalAmount,
 
+        BigDecimal currentTotalAmount,
+
         BigDecimal subtotalAmount,
 
         BigDecimal deliveryTotalAmount,

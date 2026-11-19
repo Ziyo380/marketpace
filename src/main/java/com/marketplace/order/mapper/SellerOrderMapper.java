@@ -26,6 +26,8 @@ public class SellerOrderMapper {
                 sellerOrder.getStatus(),
                 items,
                 sellerOrder.getTotalAmount(),
+                sellerOrder.getDiscountAmount(),
+                sellerOrder.getPayableAmount(),
                 sellerOrder.getDeliveryFee(),
                 sellerOrder.getMinDeliveryDays(),
                 sellerOrder.getMaxDeliveryDays(),

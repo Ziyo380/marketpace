@@ -21,6 +21,10 @@ public record SellerOrderResponse(
 
         BigDecimal totalAmount,
 
+        BigDecimal discountAmount,
+
+        BigDecimal payableAmount,
+
         BigDecimal deliveryFee,
 
         Integer minDeliveryDays,

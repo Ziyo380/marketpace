@@ -29,6 +29,8 @@ public class OrderCancellationService {
     private final StockReservationService stockReservationService;
     private final OrderHistoryService orderHistory;
     private final PromocodeService promocodeService;
+    private final OrderPricingService orderPricingService;
+    private final OrderStatusAggregationService aggregation;
 
     @Transactional
     public OrderResponse cancelMyOrder(String username, UUID orderId) {
@@ -48,6 +50,7 @@ public class OrderCancellationService {
         orderHistory.record(order, null, order.getStatus().name(), OrderStatus.CANCELLED.name(),
                 "CUSTOMER", "Buyer cancelled order");
         order.setStatus(OrderStatus.CANCELLED);
+        orderPricingService.recalculateCurrentTotal(order);
         promocodeService.release(order);
         Order savedOrder = orderRepository.saveAndFlush(order);
         return orderMapper.toOrderResponse(savedOrder);
@@ -58,19 +61,13 @@ public class OrderCancellationService {
         Order order = orderRepository.findByIdForUpdate(orderId)
                 .orElseThrow(() -> new ResourceNotFoundException("Order not found"));
         if (order.getExpiresAt() == null || order.getExpiresAt().isAfter(Instant.now())
-                || (order.getStatus() != OrderStatus.PENDING
-                    && order.getStatus() != OrderStatus.PROCESSING
-                    && order.getStatus() != OrderStatus.PARTIALLY_CANCELLED)) {
+                || order.getSellerOrders().stream().noneMatch(p -> p.getStatus() == SellerOrderStatus.PENDING)) {
             return;
         }
         cancelPendingSellerOrders(order, "Reservation expired", "SYSTEM");
-        boolean anyConfirmed = order.getSellerOrders().stream()
-                .anyMatch(part -> part.getStatus() == SellerOrderStatus.CONFIRMED);
-        OrderStatus next = anyConfirmed ? OrderStatus.PARTIALLY_CANCELLED : OrderStatus.CANCELLED;
-        orderHistory.record(order, null, order.getStatus().name(), next.name(),
-                "SYSTEM", "Reservation expired");
-        order.setStatus(next);
-        if (next == OrderStatus.CANCELLED) promocodeService.release(order);
+        aggregation.recalculate(order, "SYSTEM", "Reservation expired");
+        orderPricingService.recalculateCurrentTotal(order);
+        if (order.getStatus() == OrderStatus.CANCELLED) promocodeService.release(order);
         orderRepository.saveAndFlush(order);
     }
 

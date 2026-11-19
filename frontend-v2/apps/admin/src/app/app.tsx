@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FiGrid, FiHome, FiLogOut, FiPackage, FiShield, FiShoppingBag, FiUsers } from 'react-icons/fi';
-import { api, authStore, type Category, type Product, type Seller, type Store, type UserProfile } from '@makon/api-client';
+import { api, ApiError, authStore, type Category, type Product, type Seller, type Store, type UserProfile } from '@makon/api-client';
+import { useLiveRefresh } from '@makon/shared-ui';
 import { DashboardLogin } from '../features/auth/DashboardLogin';
 import { OverviewPanel } from '../features/overview/OverviewPanel';
 import { StorePanel } from '../features/store/StorePanel';
@@ -28,8 +29,10 @@ export default function App() {
     if (tab === 'store' && workspace.canModerate && !workspace.seller) setTab('overview');
   }, [workspace, tab]);
 
-  async function loadWorkspace() {
-    setLoading(true);
+  useLiveRefresh(async () => { if (!loading) await loadWorkspace(true); }, !!workspace);
+
+  async function loadWorkspace(background = false) {
+    if (!background) setLoading(true);
     try {
       const profile = await api.profile();
       const [categoriesResult, sellerResult, storeResult, productResult, pendingResult] = await Promise.allSettled([
@@ -44,13 +47,16 @@ export default function App() {
         pending: pendingResult.status === 'fulfilled' ? pendingResult.value : [],
         canModerate: pendingResult.status === 'fulfilled',
       });
-    } catch { authStore.clear(); setWorkspace(null); }
-    finally { setLoading(false); }
+    } catch (error) {
+      if (error instanceof ApiError && error.status === 401) { authStore.clear(); setWorkspace(null); }
+      else if (!background) setToast(error instanceof Error ? error.message : 'Не удалось обновить кабинет');
+    }
+    finally { if (!background) setLoading(false); }
   }
 
   async function logout() { try { await api.logout(); } catch { /* Local session still ends. */ } authStore.clear(); setWorkspace(null); setTab('overview'); setToast('Сессия завершена'); }
   if (!workspace && !loading) return <DashboardLogin onReady={async () => { setTab('overview'); await loadWorkspace(); }} onToast={setToast} toast={toast} />;
-  if (loading || !workspace) return <div className="dashboard-loading"><i/><b>Подключаем кабинет</b><span>Загружаем данные вашего аккаунта</span></div>;
+  if (!workspace) return <div className="dashboard-loading"><i/><b>Подключаем кабинет</b><span>Загружаем данные вашего аккаунта</span></div>;
 
   const navigation: Array<{ id: Tab; label: string; icon: typeof FiGrid }> = [
     { id: 'overview', label: 'Обзор', icon: FiGrid },

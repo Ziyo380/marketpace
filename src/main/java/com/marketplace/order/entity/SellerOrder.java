@@ -44,6 +44,13 @@ public class SellerOrder extends BaseEntity {
     @Column(name = "total_amount", nullable = false, precision = 19, scale = 2)
     private BigDecimal totalAmount;
 
+    // totalAmount is the item subtotal; these fields preserve the checkout allocation.
+    @Column(name = "discount_amount", precision = 19, scale = 2)
+    private BigDecimal discountAmount;
+
+    @Column(name = "payable_amount", precision = 19, scale = 2)
+    private BigDecimal payableAmount;
+
     @Column(name = "delivery_fee", precision = 19, scale = 2)
     private BigDecimal deliveryFee;
 

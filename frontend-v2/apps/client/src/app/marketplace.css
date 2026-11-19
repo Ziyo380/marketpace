@@ -1,3 +1,5 @@
+@import '../../../../libs/shared-ui/src/shipment-history.css';
+
 .market-app { min-height: 100vh; overflow: clip; background: var(--color-obsidian); color: var(--color-ivory); }
 .market-container, .catalog-shell { width: min(90rem, calc(100% - 2rem)); margin-inline: auto; }
 .eyebrow { margin: 0; display: inline-flex; align-items: center; gap: .55rem; color: var(--color-gold); font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
@@ -166,11 +168,13 @@
 .quantity b { min-width: 2rem; text-align: center; font-size: .72rem; }
 .favorite-action { margin-top: .75rem; min-height: 2.8rem; width: 100%; display: flex; align-items: center; justify-content: center; gap: .5rem; border: 1px solid var(--border-control); border-radius: .7rem; color: var(--color-ivory); background: transparent; }
 .favorite-action[aria-pressed="true"] { color: var(--color-gold); border-color: var(--color-gold); }
-.drawer-layer { place-items: stretch end; padding: 0; }
-.side-drawer { width: min(34rem, 100%); height: 100%; display: grid; grid-template-rows: auto 1fr auto; padding: 1.4rem; border-left: 1px solid var(--border-control); background: var(--color-charcoal); box-shadow: -2rem 0 5rem rgba(0,0,0,.35); animation: drawer-in .28s both; }
+.drawer-layer { place-items: stretch end; padding: 0; height: 100dvh; overflow: hidden; grid-template-rows: minmax(0, 1fr); }
+.side-drawer { width: min(34rem, 100%); height: 100dvh; max-height: 100dvh; min-height: 0; display: flex; flex-direction: column; overflow-y: auto; overscroll-behavior: contain; padding: 1.4rem; border-left: 1px solid var(--border-control); background: var(--color-charcoal); box-shadow: -2rem 0 5rem rgba(0,0,0,.35); animation: drawer-in .28s both; }
+.side-drawer > * { flex-shrink: 0; }
+.side-drawer > header { position: sticky; top: -1.4rem; padding-top: 1rem; z-index: 2; background: var(--color-charcoal); }
 .side-drawer > header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1.1rem; border-bottom: 1px solid var(--border-subtle); }
 .side-drawer h2 { margin: .3rem 0 0; font-family: var(--font-display); font-size: 2.5rem; font-weight: 400; }
-.cart-lines, .orders-list { overflow: auto; padding-block: 1rem; }
+.cart-lines, .orders-list { overflow: visible; min-height: 0; padding-block: 1rem; }
 .checkout-details { display: grid; gap: .7rem; margin: 1rem 0; padding: 1rem; border: 1px solid var(--border-subtle); border-radius: .75rem; }
 .checkout-details h3 { margin: 0; font-size: 1rem; }
 .checkout-details p { margin: 0; color: var(--color-muted); font-size: .75rem; }
@@ -272,3 +276,24 @@
   .cart-line .remove { grid-column: 3; grid-row: 1; }
   .account-actions { grid-template-columns: 1fr; }
 }
+.order-part, .order-shipments article { border: 1px solid var(--border-subtle, #d8d8d0); border-radius: .7rem; padding: .8rem; margin: .8rem 0; }
+.order-shipments header { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+.order-shipments p, .order-pricing p, .order-part p { overflow-wrap: anywhere; font-size: .85rem; line-height: 1.6; }
+.order-card summary { cursor: pointer; padding: .8rem 0; }
+.order-card [role="alert"] { color: #ad3b26; }
+.product-thumbnails { position: absolute; bottom: 0; left: 0; right: 0; z-index: 1; display: flex; gap: .5rem; padding: 1rem; flex-wrap: wrap; background: rgba(9,17,15,.65); }
+.product-thumbnails button { width: 4rem; height: 4rem; border: 1px solid #c5c5bb; border-radius: .5rem; overflow: hidden; cursor: pointer; }
+.product-thumbnails button[aria-pressed="true"] { outline: 2px solid #a64b28; }
+.product-dialog__image .product-thumbnails img { position: static; width: 100%; height: 100%; object-fit: cover; }
+.side-drawer--account { display: flex; flex-direction: column; overflow-y: auto; }
+.side-drawer--account > * { flex-shrink: 0; }
+.side-drawer--account .orders-list { overflow: visible; }
+.account-profile-summary { padding-block: 1rem; border-bottom: 1px solid var(--border-subtle); }
+.account-profile-summary p { margin: .4rem 0; color: var(--color-muted); overflow-wrap: anywhere; }
+.account-profile-summary strong { color: var(--color-ivory); }
+.account-profile-summary button { padding: .6rem .8rem; color: var(--color-ivory); border: 1px solid var(--border-control); border-radius: .5rem; background: transparent; }
+.account-profile-summary [role="status"] { color: var(--color-gold); }
+.auth-dialog { max-height: calc(100dvh - 2rem); overflow-y: auto; }
+.my-reviews { margin-top: 1.5rem; }
+.my-reviews button, .order-shipments button { padding: .5rem .8rem; margin: .3rem; color: var(--color-ivory); border: 1px solid var(--border-control); border-radius: .5rem; background: transparent; }
+.my-reviews textarea, .my-reviews select { width: 100%; padding: .6rem; color: var(--color-ivory); border: 1px solid var(--border-control); background: var(--color-charcoal); border-radius: .5rem; }

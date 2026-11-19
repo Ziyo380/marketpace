@@ -25,6 +25,7 @@ public class OrderMapper {
                 order.getStatus(),
                 sellerOrders,
                 order.getTotalAmount(),
+                order.getCurrentTotalAmount(),
                 order.getSubtotalAmount(),
                 order.getDeliveryTotalAmount(),
                 order.getDiscountAmount(),
