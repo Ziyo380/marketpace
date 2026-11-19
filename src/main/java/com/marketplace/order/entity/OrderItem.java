@@ -35,7 +35,7 @@ public class OrderItem extends BaseEntity {
     @JoinColumn(name = "seller_order_id", nullable = false)
     private SellerOrder sellerOrder;
 
-    @Column(name = "product_name", nullable = false, length = 255)
+    @Column(name = "product_name", nullable = false, length = 323)
     private String productName;
 
     @Column(name = "quantity", nullable = false)

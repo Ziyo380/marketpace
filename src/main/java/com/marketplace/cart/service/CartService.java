@@ -82,6 +82,9 @@ public class CartService{
         if (product.isModerationBlocked()) {
             throw new BusinessRuleException("Product is not available");
         }
+        if (!product.getCategory().isActive()) {
+            throw new BusinessRuleException("Product category must be ACTIVE");
+        }
         Store store=product.getStore();
         if (!store.isActive() || !store.isApproved()){
             throw new BusinessRuleException("Store with id "+store.getId()+" is not active");
@@ -154,6 +157,9 @@ public class CartService{
         Product product=cartItem.getProduct();
         if (product.getStatus() != ProductStatus.PUBLISHED){
             throw new BusinessRuleException("Product with id "+product.getId()+" is not published");
+        }
+        if (product.isModerationBlocked() || !product.getCategory().isActive()) {
+            throw new BusinessRuleException("Product is not available");
         }
         if (!product.getStore().isActive() || !product.getStore().isApproved()){
             throw new BusinessRuleException("Store with id "+product.getStore().getId()+" is not active");

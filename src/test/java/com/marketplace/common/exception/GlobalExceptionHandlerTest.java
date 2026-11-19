@@ -106,9 +106,25 @@ class GlobalExceptionHandlerTest {
                 .andExpect(jsonPath("$.message").value("An unexpected error occurred"));
     }
 
+    @Test
+    void returnsForbiddenWithoutExposingAccessDeniedDetails() throws Exception {
+        mockMvc.perform(get("/test/forbidden"))
+                .andExpect(status().isForbidden())
+                .andExpect(jsonPath("$.status").value(403))
+                .andExpect(jsonPath("$.code").value("FORBIDDEN_OPERATION"))
+                .andExpect(jsonPath("$.message").value("Access denied"))
+                .andExpect(jsonPath("$.path").value("/test/forbidden"))
+                .andExpect(jsonPath("$.validationErrors").isEmpty());
+    }
+
     @RestController
     @RequestMapping("/test")
     static class TestController {
+
+        @GetMapping("/forbidden")
+        String forbidden() {
+            throw new org.springframework.security.access.AccessDeniedException("Private ownership details");
+        }
 
         @GetMapping("/missing")
         String missing() {

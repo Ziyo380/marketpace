@@ -90,8 +90,12 @@ public class OrderCreationService {
             throw new BusinessRuleException("Cart items cannot be empty");
         }
         for (CartItem cartItem : cart.getItems()) {
+            BigDecimal price = cartItem.getVariant() == null ? cartItem.getProduct().getPrice()
+                    : cartItem.getVariant().getPrice();
             if (cartItem.getProduct().getStatus()!=ProductStatus.PUBLISHED){
                 throw new BusinessRuleException("Product status must be PUBLISHED");
+            }else if (!cartItem.getProduct().getCategory().isActive()){
+                throw new BusinessRuleException("Product category must be ACTIVE");
             }else if (!cartItem.getProduct().getStore().isActive()
                     || !cartItem.getProduct().getStore().isApproved()){
                 throw new BusinessRuleException("Product store must be ACTIVE");
@@ -108,8 +112,7 @@ public class OrderCreationService {
             } else if (cartItem.getVariant() == null
                     && variantRepository.existsByProduct_Id(cartItem.getProduct().getId())) {
                 throw new BusinessRuleException("Select a variant for this product");
-            } else if ((cartItem.getVariant() == null ? cartItem.getProduct().getPrice()
-                    : cartItem.getVariant().getPrice()).compareTo(BigDecimal.ZERO)<=0){
+            } else if (price == null || price.compareTo(BigDecimal.ZERO)<=0){
                 throw new BusinessRuleException("Price must be greater than 0");
             }
         }

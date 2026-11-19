@@ -25,6 +25,7 @@ import com.marketplace.user.repository.UserRepository;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
+import java.math.BigDecimal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,7 +43,8 @@ public class ProductVariantService {
 
     @Transactional
     public ProductVariantResponse create(String username, UUID productId, CreateProductVariantRequest request) {
-        Product product = ownedProduct(username, productId);
+        Product product = managedProduct(username, productId);
+        validatePrice(request.price());
         String sku = request.sku().trim().toUpperCase(Locale.ROOT);
         if (variants.existsBySku(sku)) throw new ConflictException("SKU already exists");
         ProductVariant variant = new ProductVariant();
@@ -56,7 +58,8 @@ public class ProductVariantService {
     @Transactional
     public ProductVariantResponse update(String username, UUID productId, UUID variantId,
             UpdateProductVariantRequest request) {
-        ownedProduct(username, productId);
+        managedProduct(username, productId);
+        validatePrice(request.price());
         ProductVariant variant = variants.findByIdAndProduct_Id(variantId, productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Variant not found"));
         if (!request.active() && variant.getReservedQuantity() > 0) {
@@ -100,7 +103,7 @@ public class ProductVariantService {
 
     @Transactional
     public ProductVariantResponse addStock(String username, UUID productId, UUID variantId, int amount) {
-        ProductVariant variant = ownedVariant(username, productId, variantId);
+        ProductVariant variant = managedVariant(username, productId, variantId);
         if (amount <= 0) throw new BusinessRuleException("Amount must be positive");
         try { variant.setQuantity(Math.addExact(variant.getQuantity(), amount)); }
         catch (ArithmeticException e) { throw new BusinessRuleException("Stock quantity is too large"); }
@@ -110,7 +113,7 @@ public class ProductVariantService {
 
     @Transactional
     public ProductVariantResponse removeStock(String username, UUID productId, UUID variantId, int amount) {
-        ProductVariant variant = ownedVariant(username, productId, variantId);
+        ProductVariant variant = managedVariant(username, productId, variantId);
         if (amount <= 0 || amount > variant.getQuantity() - variant.getReservedQuantity()) {
             throw new BusinessRuleException("Amount exceeds available stock");
         }
@@ -157,6 +160,30 @@ public class ProductVariantService {
         ownedProduct(username, productId);
         return variants.findByIdAndProduct_Id(variantId, productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Variant not found"));
+    }
+
+    private ProductVariant managedVariant(String username, UUID productId, UUID variantId) {
+        managedProduct(username, productId);
+        return variants.findByIdAndProduct_Id(variantId, productId)
+                .orElseThrow(() -> new ResourceNotFoundException("Variant not found"));
+    }
+
+    private Product managedProduct(String username, UUID productId) {
+        Product product = ownedProduct(username, productId);
+        if (product.getStore().getSeller().getStatus() != SellerStatus.APPROVED) {
+            throw new BusinessRuleException("Seller account must be approved to manage variants");
+        }
+        if (!product.getStore().isActive() || !product.getStore().isApproved()) {
+            throw new BusinessRuleException("Store must be active and approved to manage variants");
+        }
+        return product;
+    }
+
+    private void validatePrice(BigDecimal price) {
+        if (price == null || price.compareTo(new BigDecimal("0.01")) < 0
+                || price.scale() > 2 || price.precision() - price.scale() > 17) {
+            throw new BusinessRuleException("Price must be positive with at most 17 integer and 2 decimal digits");
+        }
     }
 
     private Product ownedProduct(String username, UUID productId) {

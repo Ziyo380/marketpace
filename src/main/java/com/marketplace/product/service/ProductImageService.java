@@ -18,12 +18,12 @@ import com.marketplace.storage.config.StorageProperties;
 import com.marketplace.storage.dto.StoredObjectResponse;
 import com.marketplace.storage.exception.StorageOperationException;
 import com.marketplace.storage.service.ObjectStorageService;
+import com.marketplace.storage.service.StorageCleanupService;
 import com.marketplace.store.entity.Store;
 import com.marketplace.store.repository.StoreRepository;
 import com.marketplace.user.entity.User;
 import com.marketplace.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -37,7 +37,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProductImageService {
@@ -57,6 +56,7 @@ public class ProductImageService {
     private final ProductImageMapper productImageMapper;
     private final ObjectStorageService objectStorageService;
     private final StorageProperties storageProperties;
+    private final StorageCleanupService storageCleanupService;
 
     @Transactional
     public ProductImageResponse uploadImage(String username, UUID productId, MultipartFile file) {
@@ -83,24 +83,20 @@ public class ProductImageService {
                     file.getSize(),
                     contentType
             );
+            storageCleanupService.deleteAfterRollback(storedObject.objectKey());
         } catch (IOException exception) {
             throw new StorageOperationException("Could not read uploaded image", exception);
         }
 
-        try {
-            ProductImage image = new ProductImage();
-            image.setProduct(product);
-            image.setObjectKey(storedObject.objectKey());
-            image.setOriginalFilename(normalizeFilename(file.getOriginalFilename(), contentType));
-            image.setContentType(contentType);
-            image.setSizeBytes(file.getSize());
-            image.setPrimary(currentImages.isEmpty());
-            image.setSortOrder(nextSortOrder(currentImages));
-            return productImageMapper.toResponse(productImageRepository.saveAndFlush(image));
-        } catch (RuntimeException exception) {
-            deleteUploadedObjectQuietly(storedObject.objectKey());
-            throw exception;
-        }
+        ProductImage image = new ProductImage();
+        image.setProduct(product);
+        image.setObjectKey(storedObject.objectKey());
+        image.setOriginalFilename(normalizeFilename(file.getOriginalFilename(), contentType));
+        image.setContentType(contentType);
+        image.setSizeBytes(file.getSize());
+        image.setPrimary(currentImages.isEmpty());
+        image.setSortOrder(nextSortOrder(currentImages));
+        return productImageMapper.toResponse(productImageRepository.saveAndFlush(image));
     }
 
     @Transactional(readOnly = true)
@@ -177,7 +173,7 @@ public class ProductImageService {
 
         List<ProductImage> images = productImageRepository
                 .findAllByProduct_IdOrderBySortOrderAsc(product.getId());
-        objectStorageService.delete(image.getObjectKey());
+        storageCleanupService.deleteAfterCommit(image.getObjectKey());
         productImageRepository.delete(image);
 
         if (image.isPrimary()) {
@@ -327,11 +323,4 @@ public class ProductImageService {
                 .toList();
     }
 
-    private void deleteUploadedObjectQuietly(String objectKey) {
-        try {
-            objectStorageService.delete(objectKey);
-        } catch (RuntimeException cleanupException) {
-            log.error("Could not clean up uploaded object {} after database failure", objectKey, cleanupException);
-        }
-    }
 }
