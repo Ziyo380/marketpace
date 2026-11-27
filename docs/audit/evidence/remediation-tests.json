@@ -1,0 +1,257 @@
+[
+  {
+    "name": "com.marketplace.audit.BackendAuditRegressionTest",
+    "tests": 21,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "sellerCannotReadAnotherStoresProduct()",
+      "suspendedSellerMustNotCreateVariants()",
+      "invalidVariantPriceCannotBeUpdatedOrSavedThroughService()",
+      "suspendedSellerCanReadVariantsButCannotEditThemOrStock()",
+      "imageMustRemainReadableWhenDatabaseDeletionRollsBack()",
+      "checkoutMustRejectCategoryDisabledAfterCartWasFilled()",
+      "httpJourneyFromRegistrationToDeliveryKeepsOwnershipAndHistory()",
+      "anonymousCannotReadOrders()",
+      "foreignCustomerShipmentAccessMustReturn403()",
+      "customerCannotReadAdminStatistics()",
+      "variantPriceWithThreeDecimalsMustBeRejected()",
+      "committedImageDeletionRemovesFileAndTask()",
+      "inactiveCategoryCannotBeAddedOrUpdatedInCart()",
+      "invalidJwtCannotReadOrders()",
+      "rolledBackUploadRemovesUnreferencedFileAfterMethodReturns()",
+      "suspensionDoesNotPreventReleasingExistingVariantReservation()",
+      "blockedUserCannotReuseValidAccessToken()",
+      "failedObjectDeletionIsPersistedAndRetried()",
+      "validProductAndVariantNamesMustFitOrderSnapshot()",
+      "inactiveOrUnapprovedStoreCannotCreateVariant()",
+      "foreignShipmentWritesAndHistoryReturnUniform403()"
+    ]
+  },
+  {
+    "name": "com.marketplace.audit.MigrationUpgradeAuditTest",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "upgradesHistoricalOrdersFromV30WithoutInventingDiscountAllocations()"
+    ]
+  },
+  {
+    "name": "com.marketplace.common.entity.BaseEntityJpaTest",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "populatesIdentifierAndAuditTimestamps()"
+    ]
+  },
+  {
+    "name": "com.marketplace.common.exception.GlobalExceptionHandlerTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "returnsStableNotFoundResponse()",
+      "returnsConflictResponse()",
+      "returnsForbiddenWithoutExposingAccessDeniedDetails()",
+      "returnsFieldValidationErrorsWithoutRejectedValue()",
+      "doesNotExposeUnexpectedExceptionDetails()",
+      "returnsStableOptimisticLockConflictResponse()"
+    ]
+  },
+  {
+    "name": "com.marketplace.common.pagination.PageResponseTest",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "mapsSpringDataPageMetadata()"
+    ]
+  },
+  {
+    "name": "com.marketplace.common.util.ClockProviderTest",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "returnsTimeFromInjectedClock()"
+    ]
+  },
+  {
+    "name": "com.marketplace.config.OpenApiConfigTest",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "definesApiInformationAndBearerScheme()"
+    ]
+  },
+  {
+    "name": "com.marketplace.delivery.service.ShipmentHistoryIntegrationTest",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "historyFailureRollsBackStatusAndVersion()",
+      "aggregateHistoryFailureRollsBackShipmentHistoryAndOrder()",
+      "recordsFullLifecycleAndIgnoresRepeatedRequests()",
+      "foreignSellerAndCustomerCannotReadHistory()",
+      "deliveredPartDoesNotCompleteOrderWithPendingPartAndExpiryFinishesRemainingWork()",
+      "recordRequiresExistingTransaction()",
+      "failedDeliveryRecordsReasonOnce()",
+      "parallelDeliveriesOfDifferentStoresProduceOneCompletedOrder()",
+      "historyFailureRollsBackShipmentCreation()"
+    ]
+  },
+  {
+    "name": "com.marketplace.delivery.service.ShipmentHistoryMigrationTest",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "migrationAllowsCreationAndTransitionsButRejectsInvalidEvents()"
+    ]
+  },
+  {
+    "name": "com.marketplace.delivery.service.ShipmentHistoryPostgresAuditTest",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "historyFailureRollsBackStatusAndVersion()",
+      "aggregateHistoryFailureRollsBackShipmentHistoryAndOrder()",
+      "recordsFullLifecycleAndIgnoresRepeatedRequests()",
+      "foreignSellerAndCustomerCannotReadHistory()",
+      "deliveredPartDoesNotCompleteOrderWithPendingPartAndExpiryFinishesRemainingWork()",
+      "recordRequiresExistingTransaction()",
+      "failedDeliveryRecordsReasonOnce()",
+      "parallelDeliveriesOfDifferentStoresProduceOneCompletedOrder()",
+      "historyFailureRollsBackShipmentCreation()"
+    ]
+  },
+  {
+    "name": "com.marketplace.delivery.service.ShipmentReadServiceTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "sellerCannotReadAnotherStoresShipment()",
+      "customerCannotReadAnotherBuyersShipments()",
+      "customerGetsEmptyListBeforeAnyShipmentExists()"
+    ]
+  },
+  {
+    "name": "com.marketplace.demo.DemoSeedIntegrationTest",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "cleanDatabaseCanBeSeededTwiceAndUsedForCheckout()"
+    ]
+  },
+  {
+    "name": "com.marketplace.MarketplaceApplicationTests",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "contextLoads()"
+    ]
+  },
+  {
+    "name": "com.marketplace.order.service.OrderIntegrationTest",
+    "tests": 14,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "variantCheckoutReservesChosenSkuAndRestoresItOnCancellation()",
+      "sellerCancellationKeepsCheckoutSnapshotAndReducesCurrentAmount()",
+      "createsAndCancelsTwoStoreOrderWithoutOrphanedReservations()",
+      "promocodeDiscountIsAppliedOnceAndReleasedOnCancellation()",
+      "createsOrderReservesStockClearsCartAndKeepsPriceSnapshot()",
+      "rollsBackOrderAndReservationWhenStockIsInsufficient()",
+      "buyerCancellationClosesSellerPartAndReservationInOneTransaction()",
+      "sellerConfirmationClosesReservationAndUpdatesOrder()",
+      "twoBuyersCannotReserveTheLastUnitTwice()",
+      "confirmedBuyerCanReviewProductAfterModeration()",
+      "sameIdempotencyKeyReturnsOriginalOrderWithoutReservingTwice()",
+      "expiredOrderReleasesHeldStock()",
+      "simultaneousSellerConfirmationAndBuyerCancellationRemainConsistent()",
+      "simultaneousCheckoutOfOneCartCreatesOnlyOneOrder()"
+    ]
+  },
+  {
+    "name": "com.marketplace.order.service.OrderPricingServiceTest",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "distributesRoundingCentDeterministically()",
+      "rejectsDiscountGreaterThanItemSubtotal()",
+      "leavesHistoricalCurrentAmountUnknownUntilAllPartsAreCancelled()",
+      "withoutPromocodeChargesDeliveryOnce()",
+      "allocatesDiscountOnlyAcrossItemsAndKeepsOriginalTotalAfterPartialCancellation()"
+    ]
+  },
+  {
+    "name": "com.marketplace.order.service.OrderStatusAggregationServiceTest",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "confirmationAndPartialCancellationRemainSupported()",
+      "cancellationDoesNotPreventCompletionOfDeliveredRemainder()",
+      "allCancelledNeverBecomeDeliveryFailed()",
+      "failureTakesPriorityOverOtherDeliveredParts()",
+      "missingShipmentCannotCompleteOrder()"
+    ]
+  },
+  {
+    "name": "com.marketplace.security.config.SellerOrderSecurityTest",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "sellerCanReachSellerOrderRoutes()",
+      "customerCannotConfirmOrCancelSellerOrder()"
+    ]
+  },
+  {
+    "name": "com.marketplace.storage.service.LocalObjectStorageServiceTest",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "savesReadsAndDeletesImageWithinStorageDirectory()"
+    ]
+  },
+  {
+    "name": "com.marketplace.storage.service.MinioObjectStorageServiceTest",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "signsPublicUrlWithoutContactingPublicEndpointFromBackend()"
+    ]
+  }
+]

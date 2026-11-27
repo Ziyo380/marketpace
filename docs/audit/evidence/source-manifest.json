@@ -1,0 +1,1298 @@
+[
+  {
+    "path": "src\\main\\java\\com\\marketplace\\MarketplaceApplication.java",
+    "sha256": "51ECD31905FA0C6CD8B2869424D1B90B228E8F1D77797A4DC34CCA71814CAF06"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\controller\\AdminController.java",
+    "sha256": "8E47DE25329E2877559CB3A09E4EAA2C20F43D3A0B41933C50F94926C92272A9"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\controller\\AdminProductController.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\controller\\AdminReviewController.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\controller\\AdminStatisticsController.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\controller\\AdminStoreController.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\controller\\AdminUserController.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\dto\\request\\ModerateProductRequest.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\dto\\request\\ModerateReviewRequest.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\dto\\request\\ModerateStoreRequest.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\dto\\request\\ModerationReasonRequest.java",
+    "sha256": "7C7E45DC98C89107AAE0CC49F5B62C0636535A38F93CBC8A81FFB6F4E6CCF735"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\dto\\request\\UpdateUserStatusRequest.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\dto\\response\\AuditLogResponse.java",
+    "sha256": "D05C2A31217994913FE720D57E2906B44905D61D9F56990B78B4C65BC5209288"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\dto\\response\\PlatformStatisticsResponse.java",
+    "sha256": "0AAF35407E9F9C677967E341740338C9A0DFE9744D48188C69EF05D1AA35C121"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\entity\\AuditAction.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\entity\\AuditLog.java",
+    "sha256": "1E8961AE6F2355DB24179223B1AB11BBCE1FBC178B438C974711BDE9DFE51A2B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\repository\\AuditLogRepository.java",
+    "sha256": "05B45B1ADCCBA2DAD08CBB96075DB6FF7B832A1A5E1DF798BB02CD8A756FACC5"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\service\\AdminManagementService.java",
+    "sha256": "315788610A522625B3F8C58464C6E3EBB2E000D81399086276C252FBC8C17BAA"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\service\\AdminProductService.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\service\\AdminReviewService.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\service\\AdminStatisticsService.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\service\\AdminStoreService.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\service\\AdminUserService.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\admin\\service\\AuditService.java",
+    "sha256": "C00727B63A9A00652F6F2E2D113854A084E11CCC21C6C0C804AFB5CFC2315A36"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\auth\\controller\\AuthController.java",
+    "sha256": "EAA3009E7C184901525562CEFA5686325C389AA2047D56F08BE5A91C0D31D497"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\auth\\dto\\request\\LoginRequest.java",
+    "sha256": "2752FE58F386B2CD2DBD7F7E4511EEB5B88A4409F4E4BD9DCB7874D60E9B4F2C"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\auth\\dto\\request\\LogoutRequest.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\auth\\dto\\request\\RefreshTokenRequest.java",
+    "sha256": "6D6EAE317F2059215272DE4311C7A94B48E34BAE4C4BB71E74459E99A49F1165"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\auth\\dto\\request\\RegisterRequest.java",
+    "sha256": "DC8FE9041EF32023D6749D1BFDD05377F12A5F870179B890B86094B43815A303"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\auth\\dto\\response\\AuthResponse.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\auth\\dto\\response\\LoginResponse.java",
+    "sha256": "8B8E59ABFFCFF94B906E0DB50C635B217C37F9772B6CC9167AD97B7446B362E6"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\auth\\dto\\response\\RegisterResponse.java",
+    "sha256": "0CDF0F2013F19BE985427B5ED609D3EC34A24AC20539F918B7E7F4FDF2C12681"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\auth\\dto\\response\\TokenResponse.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\auth\\entity\\RefreshToken.java",
+    "sha256": "74A9533C4F0A220E2805922A6F88E469487DF228CCD02CF5159FB4CFA3B2B5B1"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\auth\\exception\\InvalidCredentialsException.java",
+    "sha256": "197E6B8C71E625152C12FC090C13E7B5157C3302052AA1BBB6B59CA5A1F1B6B5"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\auth\\exception\\InvalidRefreshTokenException.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\auth\\exception\\UserAlreadyExistsException.java",
+    "sha256": "053BB9024DBDAC8C1F01D29373651EC064359E4872E11F5589CB45248AF0BB42"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\auth\\repository\\RefreshTokenRepository.java",
+    "sha256": "FC8BF5B5EB9864F574B565AC44E3DED1D4DB918588C22D2903052358BF4A9BB8"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\auth\\service\\AuthService.java",
+    "sha256": "B0A74929C0D93B35478F95D5BBDC28CAC0B2E3167018C8DE744EEDB4F5190FB6"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\auth\\service\\RefreshTokenService.java",
+    "sha256": "EA85AEB2B1BD32AD38C161EE73A81C1045161309FCCB820DA1BADA8FC820336F"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\cart\\controller\\CartController.java",
+    "sha256": "A7AF19453B93EFCEF9300D02CB750967A3DF280A006FCD8FEC62645054EF96CA"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\cart\\dto\\request\\AddCartItemRequest.java",
+    "sha256": "EAD721555F3507D018B743BE4E4FF0ECEF04FB230033043C6492DEA387BF5B33"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\cart\\dto\\request\\UpdateCartItemRequest.java",
+    "sha256": "D4C2B4134A772BBCD46D1CFFAFC1082F8F836A55B1FD321061910A0CC0F49D0A"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\cart\\dto\\response\\CartItemResponse.java",
+    "sha256": "C4C7E31E6224623CD26E45B295238D2E0ACF91AAE8FB8FFA510387BB69713D42"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\cart\\dto\\response\\CartResponse.java",
+    "sha256": "97CEF21138E3BEC9186FB800240601614D91553E7840C5B30C4CFFCBD98724CD"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\cart\\entity\\Cart.java",
+    "sha256": "4C0BEB7C97A555738111A6275252851470EED51E80EF25ED26389535A079AAF5"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\cart\\entity\\CartItem.java",
+    "sha256": "B49AD3E07F2FAFD45E87F492A3D5E6D088A31AAEAD726103D8EC2FDCA44AF0AF"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\cart\\exception\\CartItemNotFoundException.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\cart\\mapper\\CartMapper.java",
+    "sha256": "1BD1C0ADD06606C81F8D68D764DB8FF8FB2188933B00E76F009F22A5D3C78A48"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\cart\\repository\\CartItemRepository.java",
+    "sha256": "E5D7887C5F416C69774CAC02F6B0EFE1D68AEA85F96A591CBA5074E34E822F35"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\cart\\repository\\CartRepository.java",
+    "sha256": "AC6E90DDF802223FD886D915363991971955D1451D813D8183D97383841FDD73"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\cart\\service\\CartService.java",
+    "sha256": "9CE0C37AA23BC2D98CD3A1C36A71A988B6A69AEF54B37FFBF5D87BB565855C2E"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\category\\controller\\AdminCategoryController.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\category\\controller\\CategoryController.java",
+    "sha256": "FE95DEDDF3FF49A88DFFD5219EC1187D5C53CDC7B3CD048968916567B33A66F0"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\category\\dto\\request\\CreateCategoryRequest.java",
+    "sha256": "94AC8B6EA617D8F0AE3D853FFCC2E5589E1B71E29AAB165FB7A16D277CEF9E97"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\category\\dto\\request\\UpdateCategoryRequest.java",
+    "sha256": "0E18555D18C3FCA11D84BCB7EA0613AF46D1D6AFFD3831D58BD16566DAAAA6EF"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\category\\dto\\response\\CategoryResponse.java",
+    "sha256": "9BDFB69ADCC189E1591460EF55E2569AE0DC56CC14E82B7C7F4C174383C6171C"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\category\\dto\\response\\CategoryTreeResponse.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\category\\entity\\Category.java",
+    "sha256": "A06F557F3F8A0E4B1736DAD947574C51A9612C14043535B4FBA81ABBFBD6C860"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\category\\exception\\CategoryHierarchyException.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\category\\mapper\\CategoryMapper.java",
+    "sha256": "F6B79BFAD12297CD63C7AE1886CEE95DEC8FCEFF6839507AEB9D87024F9742E8"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\category\\repository\\CategoryRepository.java",
+    "sha256": "9FC4A589F8484B102987CF7DB3115BAD1CB90E233299B3B58376D77E78F9D243"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\category\\service\\CategoryService.java",
+    "sha256": "92E67BD79A3C30A80DD694BAE62946A68AF15E371DDA23EA8C86F1F1544E6A64"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\common\\entity\\BaseEntity.java",
+    "sha256": "6E06EDCB7337B6BE9BF93688D75DE7C217B14FA10CA0ACEEB65C867A07A53AAF"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\common\\exception\\BusinessRuleException.java",
+    "sha256": "434CEA8058F4D38FF0BFA782B36AB178637B4516EC7A408248D5B5390A746183"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\common\\exception\\ConflictException.java",
+    "sha256": "121BC4BCBD59A4F1642122B48ED65DE9DD3BC2DCCE5F4C47C9E0BA0A6EF7351D"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\common\\exception\\ErrorCode.java",
+    "sha256": "3AEF0F30263EE085AD8EE5A715709F0E989CC32A3066587958A9E580E725D0B3"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\common\\exception\\ForbiddenOperationException.java",
+    "sha256": "B8F4DA0CF55368AFF2BB6D2D582E3FCE6643310134FA0BE50BDF51D14A3DB612"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\common\\exception\\GlobalExceptionHandler.java",
+    "sha256": "8F0FDA907DBBA6F0B9E07A30480FDF3B7B2EEA438BD3A131C39F5BC4E2D7AC20"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\common\\exception\\InvalidStateTransitionException.java",
+    "sha256": "1B2856DCC957C1F97845E31743C1ADE8EC238A6499B8F29E3052418791CE7EE4"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\common\\exception\\MarketplaceException.java",
+    "sha256": "C3A8862E1522488F1D4E796B674A7EAF7E6D13D7C536AC1E35605D7423B7342F"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\common\\exception\\ResourceNotFoundException.java",
+    "sha256": "CEF4C0F3EB9999072A3E4909C74BC414A7CEE9BDFAD8A6B9B9FDA427D0D5E4D5"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\common\\pagination\\PageResponse.java",
+    "sha256": "0B6A43C3D1AA3F22ABD2881667BF5521B770F93B245E8AC4C970531B5277EA07"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\common\\response\\ErrorResponse.java",
+    "sha256": "D89E6C0F982737CEEC2A7A123957100DF429FD94AA7B37AE9E4567588EC6E0ED"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\common\\response\\FieldValidationError.java",
+    "sha256": "F7B3543ECCB7F9FCB0BCEA523B82372374D87B29579D5A4473C0C95B5368A78F"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\common\\util\\ClockProvider.java",
+    "sha256": "79931C58E419D30BE2506CC601A05468B754224DCA934C83FA0A3D1D2BADAE76"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\config\\JacksonConfig.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\config\\JpaConfig.java",
+    "sha256": "2DB29A2A2D2BED7F679A1560B968B7373A6FBA99EC259C4BBCE086C515B99AE3"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\config\\OpenApiConfig.java",
+    "sha256": "8937C8A9277CA3205DE5F0CF36A5BDFCAB68A5D456A816ECA560542F36011DC5"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\config\\PasswordEncoderConfig.java",
+    "sha256": "02FEBBCF85B784EB2EF9C928D1DF57C9F0330D2DCDF57DF1133A839DF3D83686"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\config\\StorageConfig.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\controller\\CustomerShipmentController.java",
+    "sha256": "20192C777B8580CBE86386277615AFA8380184AA116FEFE683B0C4CE6A43354D"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\controller\\DeliveryRegionController.java",
+    "sha256": "DFC72F78B71A1CC26BDCE117345AEC7B7632AAB03C91E5B02DF60655485933D7"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\controller\\ShipmentController.java",
+    "sha256": "85E56F294CAA508DECD19CFD5300606B186C7F62B62983903D3A788E23E63D55"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\controller\\StoreDeliveryZoneController.java",
+    "sha256": "CC71674B64C2140A1A57BE1BBAEFE78F33499E14419E01B0ED29FCB2C308F71B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\dto\\request\\CreateStoreDeliveryZoneRequest.java",
+    "sha256": "B857B010BBB50BC1C264F7DEBB09B4E367477A6EDF07CFE401E9E48A8E0BFA0E"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\dto\\request\\DispatchShipmentRequest.java",
+    "sha256": "4FD03B98C0B23A465547DC646491FDABED5C0EA68120A9FCBB2A0DB807D11FA6"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\dto\\request\\MarkDeliveryFailedRequest.java",
+    "sha256": "A5EFDBF645338DC8E35174D4F6DF9BE9C74A0E0302A0F6347F22B37A2BAAA658"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\dto\\request\\UpdateShipmentPreparationStatusRequest.java",
+    "sha256": "240790F84FE6007C6E7FE3160A2C9AF9D4D0835034EFFB91A88C91954D4952B2"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\dto\\request\\UpdateStoreDeliveryZoneRequest.java",
+    "sha256": "7A80C6276211AFB5C71BF22DC4A10775EF890C7990D7339DE870C72724B3684A"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\dto\\request\\UpdateStoreDeliveryZoneStatusRequest.java",
+    "sha256": "47B1A9B6E4779CFAB43797884A1165A494F216096422F527496D4CE142E6B025"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\dto\\response\\DeliveryRegionResponse.java",
+    "sha256": "F2DB16FDD069053B7B3A8DDE6C9AD20D0E48B7D05AB59AA25CEDC699DF1F140C"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\dto\\response\\ShipmentHistoryResponse.java",
+    "sha256": "B4957B18028E5A8C87915CE0C0032DE4FED4EA39A30DE334817539B66E810C7C"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\dto\\response\\ShipmentResponse.java",
+    "sha256": "3272C46A89D2B59B6891BB2793EC11BC660B38DE45FB0EB3FA0E5F7B730BCF99"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\dto\\response\\StoreDeliveryZoneResponse.java",
+    "sha256": "613BBCC70B4B5F0F54A6AE8CFC151ABD3211C22BDCC50883DBC12B6253BB72CD"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\entity\\DeliveryRegion.java",
+    "sha256": "C733E7805E42BA27C30940D07F4F14F474AFF24BFD535228463AA36164DBB979"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\entity\\Shipment.java",
+    "sha256": "01A2EC7F73E47365FD402B25D70058B328A15B3F8B94939BA2F68347DEAD3287"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\entity\\ShipmentActorType.java",
+    "sha256": "CB665D94B67644B7D4C1730E933A46DCEE62E6358ADC0284980F4AFE1E9494F8"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\entity\\ShipmentStatus.java",
+    "sha256": "40608C4832FB45F59A893EEDAC965F6D4FDD0C4FCA8C73F0C866A3A7DF7C0F37"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\entity\\ShipmentStatusHistory.java",
+    "sha256": "21CF3E0E30CF0E1582A6922D5E9DCBEA776287114E393126D1016124DDAC1D02"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\entity\\StoreDeliveryZone.java",
+    "sha256": "EE8D43708DAEE68D356E130CBF26D1620C7AB2CF007FDEB401176B0E3BA1859E"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\mapper\\ShipmentHistoryMapper.java",
+    "sha256": "E0D9D23CB9D6A89AFFA82EB9B320143D27A9AAD0B407A78540C92C8C99D5E786"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\mapper\\ShipmentMapper.java",
+    "sha256": "71B21317F4213CBF86C3729F32E9539615FCDEF80FE879D9C1ABEF91A9D8AC92"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\mapper\\StoreDeliveryZoneMapper.java",
+    "sha256": "A21579AAF4CEC3E4A0CD02EC2BAF566C9DC2E274047B43EB39AACF605609C483"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\repository\\DeliveryRegionRepository.java",
+    "sha256": "CA32C1F3FB9FBA644AAC88159FA7E2C27CECC7E6A13AA10EBF1B2CDD26B52CE2"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\repository\\ShipmentRepository.java",
+    "sha256": "666C2A356441A1AF42B4FB5643DD9DA011408C29A366C37C1453E718A490FBEA"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\repository\\ShipmentStatusHistoryRepository.java",
+    "sha256": "44B5B4CFAB0A93E5FBBB0683B18729F522C17C58B7F824C6985E4BC03E421FAA"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\repository\\StoreDeliveryZoneRepository.java",
+    "sha256": "0DF0C0A4635A7AFFA5A87479062934DF0AAC34C6056A7DE0F96B43DBA1FA2174"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\service\\DeliveryAvailabilityService.java",
+    "sha256": "16A6B99D449C7CC957CAB85593501DABE7792944A09BD2CC9998E69B25B3882D"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\service\\DeliveryRegionService.java",
+    "sha256": "91360ADFC0F078D9D454827B7FC696CE63E93F91AB9B5F58C1C47B54FBF4CB99"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\service\\ShipmentHistoryService.java",
+    "sha256": "3A8F6C300B8D7B1D115D1E95229E6B641F13780E5A94BD14DB32F2DB906FAE07"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\service\\ShipmentService.java",
+    "sha256": "C19C9C89C0DBC7F76C412BCB4CAAC6D13A70267128AB90C5AE53E9B8FE974587"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\delivery\\service\\StoreDeliveryZoneService.java",
+    "sha256": "61A847CEEEECD4B2FF46F059D99FDF3589B6B5949E2A4F1BD887A65089C6E2F2"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\favorite\\controller\\FavoriteController.java",
+    "sha256": "F429E6E4EC2DB23C53A446041763465FC305179D40504A10214577EA1A9CBBF7"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\favorite\\dto\\response\\FavoriteResponse.java",
+    "sha256": "E235F6200D6920C47C57AE9D14E59B2AD4DD899B4C8AD46CB56A045866CA0EF7"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\favorite\\entity\\Favorite.java",
+    "sha256": "625ABB1DB3E129132EB498444E692B1FE2B25316E6A58F91FB6DD5658D565175"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\favorite\\exception\\DuplicateFavoriteException.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\favorite\\mapper\\FavoriteMapper.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\favorite\\repository\\FavoriteRepository.java",
+    "sha256": "F64A3F51F8E74FBE179E73D3B749EAEF4A89FFCAB4BC9151E4589D19DCDEB126"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\favorite\\service\\FavoriteService.java",
+    "sha256": "83E81BD0B0F7FB3C03BA4556B6B27B186B045816527D1A0468771B00A809CA7F"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\controller\\SellerInventoryController.java",
+    "sha256": "252178A973213A37B5C56BE5FB99B52F7E704EDD1DD4E4688CFF9B5911820396"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\dto\\request\\AddStockRequest.java",
+    "sha256": "2034B17C89FC08584BE64E850BD414135631604C9C4DCAF86B3739CA0C6BD2F0"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\dto\\request\\RemoveStockRequest.java",
+    "sha256": "A9B20AAF5629BFF6EF4A59E5C83188FD6AE2465CE1B29F712EAFD1D63FB7A385"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\dto\\request\\UpdateStockRequest.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\dto\\response\\InventoryMovementResponse.java",
+    "sha256": "E0CF60FDDD4B4FAE1DACC17C14F897761AAD9326290EB3E07D68C851AD0B7600"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\dto\\response\\InventoryResponse.java",
+    "sha256": "9A77BD2DACF6E76465CEE5D19C93C5156FE110FD76A99E2157648C1069493609"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\dto\\response\\StockMovementResponse.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\entity\\Inventory.java",
+    "sha256": "91E936A7E6F85986FD2FC7FAF0C314EEBD05077B62C66631BA507084F5F6B667"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\entity\\InventoryMovement.java",
+    "sha256": "1B59A54A015853C18158EB3CCCAA8D276366208435E3F3EEDCF794866154F088"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\entity\\InventoryMovementType.java",
+    "sha256": "B38EF5A80B82BC6658F940AF889331C6B4D3D0819A5F06694BC253B3CFD31DC6"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\entity\\StockReservation.java",
+    "sha256": "2044AB2AADAB7EBA61F7ED5BE57957BA6E5F41CB5325A330EE9DF68CD26D4FB3"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\entity\\StockReservationStatus.java",
+    "sha256": "414800A575820A061768FC6C6992F75EBDC9E7716BFB58BA868DE1C156A0B01D"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\exception\\InsufficientStockException.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\mapper\\InventoryMapper.java",
+    "sha256": "B806F18BF8F6B667B7EDDC52C3219330E37A07D52734B64150C99BB353805666"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\repository\\InventoryMovementRepository.java",
+    "sha256": "D009F939BD6091330E454DAF6429F2BBC293010B2F7604FB07AA11CCADDAC4BE"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\repository\\InventoryRepository.java",
+    "sha256": "2C83069E029D72383EFDC48A8CA94E2D7B52BDD309614CA40594ACBBC855B90F"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\repository\\StockReservationRepository.java",
+    "sha256": "2FA9972968BC2D486E4786CF94405D670D254B602C26BA130942275DF4997D5C"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\service\\InventoryMovementService.java",
+    "sha256": "023E250381872018F51DA1F3FE82281085472C4B1123580376944729ADB7188C"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\service\\InventoryService.java",
+    "sha256": "087908B78FED36F767D1501D43F1ABFB5BBEFD87E2EDBF7E55302EA0BB68D8F6"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\inventory\\service\\StockReservationService.java",
+    "sha256": "A3D8D5B9BD56D5034D9EC25A70FF04289DD345A950D9D638821754E2F987EE00"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\controller\\CustomerOrderController.java",
+    "sha256": "BC1E441D581F78F60CEA48EF6B52958BFC42667E88DB10E0E2326B06713D25C7"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\controller\\SellerOrderController.java",
+    "sha256": "5B2A0FB307C15867DD3C7CE515B5510DDE58FF03A227709189AAD6C7639276E3"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\dto\\request\\CancelOrderRequest.java",
+    "sha256": "AAAF6BE2C42AEA302A633419DB42290979E998A73FEACC701FE6BEE22B15F10B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\dto\\request\\CreateOrderRequest.java",
+    "sha256": "EFA835D439A4D4A67323A2ABCAAF0CB69474B518BB941EAA75EB83C27904C95A"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\dto\\request\\DeliveryDetails.java",
+    "sha256": "CF92F0211657D0D94F24E01DAD5982462F8A6ADC8FB8E158AF0D50062FC655E2"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\dto\\request\\UpdateSellerOrderStatusRequest.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\dto\\response\\DeliveryDetailsResponse.java",
+    "sha256": "88798FA7A5D69D51FA7CBB8E2312F4FC3899DA8DEAB8A892A402277347BB0BDF"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\dto\\response\\OrderDetailsResponse.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\dto\\response\\OrderHistoryResponse.java",
+    "sha256": "2F534F087C34A86E9C8662B8F09960C44325FFBAD1C3AACAE310DED6F922B57A"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\dto\\response\\OrderItemResponse.java",
+    "sha256": "A5EC5D8C4CE27F65702AA9EDEB7525E1F047FB56748BB98A35F308687419A1CA"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\dto\\response\\OrderResponse.java",
+    "sha256": "4DE3A6E0DADF90E537BA44D0A470A04429B2AC67DEF0A7CB7139B2842DF3AED5"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\dto\\response\\SellerOrderResponse.java",
+    "sha256": "8E9B2AE548A3CE063431BC22CFE53C74E1DE2842E2385417E7032EBBA92D5E92"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\entity\\Order.java",
+    "sha256": "92FF3149711757DFDD8E34DCDFC8924ACCDF5D76BE7607C20CB4AB778BD9DF3D"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\entity\\OrderItem.java",
+    "sha256": "8EDB3B2FE9DBD01F8A2FCDEBDF2A5E9DF90B26DBB774E7EFD8A2DBC95D457DBA"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\entity\\OrderStatus.java",
+    "sha256": "42B249BCF14ABC19C2C8CF01ABC198D70CC776B9E9AFC35DF836858DC0A46ADE"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\entity\\OrderStatusHistory.java",
+    "sha256": "BC82DD6A9B0F83A52C9EFDC991ABA0543984D53BEA93EC325A402A73D0F452AB"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\entity\\SellerOrder.java",
+    "sha256": "BEECE5D03E8504730A5C56E7E10443B8271A099C2A8B98E86CB45142F9E3CA3D"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\entity\\SellerOrderStatus.java",
+    "sha256": "1F5A518C16BE17B529AA5AC39B03DD431F39D6D82FCF24B71798D1407B5F8807"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\exception\\OrderCancellationException.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\mapper\\DeliveryDetailsMapper.java",
+    "sha256": "FAC3402C6E31AF549AD3A7DC2A5F1BAD8803200F6356688CD153C4D93F60C23A"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\mapper\\OrderItemMapper.java",
+    "sha256": "2AA46B6B3CD9AF36E43FB98F2436235C61788C7A695CA25296673C8016195B96"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\mapper\\OrderMapper.java",
+    "sha256": "934A3D1E68AA1883BD645834A9CA53036F84354EF908D78A8B4B912487BDE07D"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\mapper\\SellerOrderMapper.java",
+    "sha256": "F3D65BAE2D6D0143840D02011A8F701215C3D2D4CC1353362A8F6FFF761A5EDB"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\repository\\OrderItemRepository.java",
+    "sha256": "E44F1AB55AB94CFB6E0F45496778A86AC29D467A18C2948DBB9317D045126BE4"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\repository\\OrderRepository.java",
+    "sha256": "DDE1D61B2DD2AFACE92C42C0CDD2A80DE952C71AC50410824718184843DF682D"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\repository\\OrderStatusHistoryRepository.java",
+    "sha256": "C533C65C25A768D59BC16D70BE01A039BBAC53FE66565DBF4600E0900BFA1002"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\repository\\SellerOrderRepository.java",
+    "sha256": "E5E86910C9265B873C24C118EF1FD80E6E35740116DD9EA477E550C49E54188C"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\service\\OrderCancellationService.java",
+    "sha256": "02FEC876B81EF3633969B44A29FB5F2B417FD61CF376A860224781A8A8C6D20B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\service\\OrderCreationService.java",
+    "sha256": "888770782F2AAB1C0E867648699E94C5050B624CFD9984E50A5C8ABF4BDD334D"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\service\\OrderExpirationJob.java",
+    "sha256": "66594F7187EDF732D636C8E754FC294C7DE58B8843209638C5260ED4D8EA5E36"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\service\\OrderHistoryService.java",
+    "sha256": "235E48BA3697E0A8F2D38B7A5589018DDD2DFC32728F17CDB0FAC43F2D515FA7"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\service\\OrderPricingService.java",
+    "sha256": "372BEFD110133B1C616EB3057F7915C672D82C41A9B0A397D4A001BA9CB2F4A2"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\service\\OrderService.java",
+    "sha256": "BF6F36E8D640655ED890B1BF4F1170DA0CC08B77A78C54498E8D9E2545DEC216"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\service\\OrderStatusAggregationService.java",
+    "sha256": "BA4EFA267B5FABACFEFED541679E1269F46D9F2631F946A9B1AB818BF87016C2"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\service\\OrderStatusService.java",
+    "sha256": "303863AD3F3237823C6AD439331DE9C5B5B10ADA60298DB76A48C32CE16F6680"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\order\\service\\SellerOrderService.java",
+    "sha256": "10760CF9599ED450063D24044C596FE5EEFDB91510D1119EFE60F0B5CBFE5026"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\controller\\ProductController.java",
+    "sha256": "EB9B6B0D421BDCFB951B299E75B51403DF8D453786EFABADDF3D1FEA532E5AB6"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\controller\\ProductVariantController.java",
+    "sha256": "30356900D1B345AB8EC5136866189F606396AC71173EA5D5B18718EFF21B4CAA"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\controller\\PublicProductController.java",
+    "sha256": "764664A328560122D02E4E17717EAD08519CD3EFBE8C280D64F4739EA5A877B5"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\dto\\request\\CreateProductRequest.java",
+    "sha256": "A0CCA7807B22244C13A0AE3FA33C1B4F1F883CC9E0C5F3B7694AA7FBFE9C8D9B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\dto\\request\\CreateProductVariantRequest.java",
+    "sha256": "E5C08D4DEF67C402CF6D34C443CBFB241D87DB3E7A95BA0C3498B8778BECAE2B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\dto\\request\\ProductSearchRequest.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\dto\\request\\ReorderProductImagesRequest.java",
+    "sha256": "1D9D4D9605FCE3DC566DDB7A79DC8977DF28FC794861829A133D7D9A4818F2B9"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\dto\\request\\UpdateProductRequest.java",
+    "sha256": "530063BABBC9A64C64FCE49A7605A9ECCDBE7200D1DB988431A1AC10E0E593A7"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\dto\\request\\UpdateProductVariantRequest.java",
+    "sha256": "865F0B9ED581F8B37C77403BCDE56541D747F75D63DEBA23F6757DDBA384A5F7"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\dto\\request\\VariantStockRequest.java",
+    "sha256": "D6D578579D72585ED04DF9C61407720E93BF45B83B42CDE6CC35B2D1F01B440C"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\dto\\response\\ProductDetailsResponse.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\dto\\response\\ProductImageResponse.java",
+    "sha256": "D0DD9FFCA1EE16BAFEFC35EE19A2CC4BDFC16098CFF18F48B89D0974D47CA543"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\dto\\response\\ProductResponse.java",
+    "sha256": "D99D25D3CE09DA2F3EC9DD5C799FE8A8625F1A6BD0778BE8D270D72E8C0C3844"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\dto\\response\\ProductVariantResponse.java",
+    "sha256": "E1522C5E95B936508B782E3FC7CC8EC5583093B450DBDC18BB43221C746D6E78"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\entity\\Product.java",
+    "sha256": "89C440FB6C72FD2EBE7A7FCA68BB23DAD18375F53562F8CC39B7336FE2898E16"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\entity\\ProductImage.java",
+    "sha256": "52902DFB3D2DB7F9069BE6C3B623A31BB4544EDEF5645F0B768859CE6F328149"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\entity\\ProductStatus.java",
+    "sha256": "8A3D1F76A28CD01D12873B83CD36EFA056ED3C95AA5D2879A60C65B135D39711"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\entity\\ProductVariant.java",
+    "sha256": "671AD7C7302D3DBBDE8B37E0BDF8D02FE4B94D918A2D1E16E5E1C7D45913F790"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\exception\\DuplicateSkuException.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\exception\\ProductUnavailableException.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\mapper\\ProductImageMapper.java",
+    "sha256": "FCF146B85F0C696B1D3F4FDA05C5E03F3E733D5B10EE68C80523788B1A8A5DFD"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\mapper\\ProductMapper.java",
+    "sha256": "E69046B21868A6B30B9C956D55FAEECD5808BC31A1BF54E1FD17E67088B05738"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\repository\\ProductImageRepository.java",
+    "sha256": "E80D292EB7F928095A9FC59813FE549398C6AD7B676BB5B0B2E2835578B34F2A"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\repository\\ProductRepository.java",
+    "sha256": "933C4A8A17BCF8E8DBE9EC3DA10D8E6708563E5200A7DF0B6BCEB08E1C83DECE"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\repository\\ProductSpecifications.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\repository\\ProductVariantRepository.java",
+    "sha256": "6960E99FE4DF8E1A87833B77AA4B50FBD88A45816400C479E6DC3906D4A92E94"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\service\\ProductImageService.java",
+    "sha256": "2BEF3688D65619694BB17A80B2CDF6969CB4719443D6A5E1B3EDCBA7F3CDCED8"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\service\\ProductSearchService.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\service\\ProductService.java",
+    "sha256": "A1444832FCE9C925636BD94BB48470857B4C64857EA9816DA348D7DBB5223E2C"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\product\\service\\ProductVariantService.java",
+    "sha256": "A9280714474190A74DFDB3A16C5659F18EF3446B8D3E3AF7129F839D164D795B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\controller\\AdminPromocodeController.java",
+    "sha256": "13D476B82AD1394593FAB408897DA86D88E1AD096E4AF852778EB42F89B061FA"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\controller\\PromocodeController.java",
+    "sha256": "7CE0D5911372F5C990C9596E7F52FB51BC9956E68B3A0DE81429ABB36844EC6B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\dto\\request\\CreatePromocodeRequest.java",
+    "sha256": "D23DE96458874EEAFBA5BE8BD195DBBF8020F968A35646B71BD157E8ECA15D5C"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\dto\\request\\UpdatePromocodeRequest.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\dto\\request\\ValidatePromocodeRequest.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\dto\\response\\DiscountResponse.java",
+    "sha256": "B6556912EBCCFD111FB8C0F27546D3C5BB39DDAEDB428DC22EFD547BCBCE2405"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\dto\\response\\PromocodeResponse.java",
+    "sha256": "3030BC9950A41BF126BCF87B9CB15D9E35B81B795C9D59B539522D9CA3D39355"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\entity\\DiscountType.java",
+    "sha256": "6DB5CBDB25FDD47F33597D1D05B2123A4C563D9EFCF4288FD7D75232180A876C"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\entity\\Promocode.java",
+    "sha256": "7E8757F7565D54BACBB6C0540B399A4C8CCE0BDD03A377C26BE7AD2EAC02AF56"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\entity\\PromocodeStatus.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\entity\\PromocodeUsage.java",
+    "sha256": "69779232ED7C0FF20E805455B847DD2B54070745C3D88E4397E8F476B7FE7ADE"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\exception\\InvalidPromocodeException.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\exception\\PromocodeUsageLimitException.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\mapper\\PromocodeMapper.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\repository\\PromocodeRepository.java",
+    "sha256": "FA8DBC3E2D653C5C307B30014706A6C149567FE723B7EF38544CF58E87A0329F"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\repository\\PromocodeUsageRepository.java",
+    "sha256": "009E94A97632CB9C693FE0C4D0AC8BC4D7638F460871008EC82DD495773DA844"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\service\\DiscountCalculationService.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\promotion\\service\\PromocodeService.java",
+    "sha256": "D8F44224A0BB9EF3A803E5D3C7605BB29089700E16512147EC128AB94B474161"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\review\\controller\\ReviewController.java",
+    "sha256": "A5CF05DA53F71AD7625CBB31D388D698DD573F633C8A82400DD66BD3A0283152"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\review\\dto\\request\\CreateReviewRequest.java",
+    "sha256": "57BE9F0012D9E80B0E5FDCB181CB141D5105AA4F740B29B10518E004E9F17D0C"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\review\\dto\\request\\UpdateReviewRequest.java",
+    "sha256": "33402EF6C6F7ABFEC1F4F2CAC390EC5B7DFEC865DAB9418B4B3C2BD433D25CD4"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\review\\dto\\response\\ProductRatingResponse.java",
+    "sha256": "271CDBAE417A4EA6695336AD681421BA738C0B4A40A4AE5ED6E2457EACE2D3B4"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\review\\dto\\response\\ReviewResponse.java",
+    "sha256": "4FB9AFA6791080A644218CBD02F1B58A064F431BB3D6EBF2A51D81821707392D"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\review\\entity\\Review.java",
+    "sha256": "09407A2CB46519675B4190EE6056D6F08B3924A5B815E9BB08A523BA4C364830"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\review\\entity\\ReviewStatus.java",
+    "sha256": "49A1D707D54CA31CC660A6672AB3B54156911943C1F7352C688E6BBF8B9AC873"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\review\\exception\\DuplicateReviewException.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\review\\exception\\ReviewEligibilityException.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\review\\mapper\\ReviewMapper.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\review\\repository\\ReviewRepository.java",
+    "sha256": "0308807B6FD2E964E5AF2F3A7A4549C4AE1FF093F6304D2C4F58B8CDA5596971"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\review\\service\\ReviewEligibilityService.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\review\\service\\ReviewService.java",
+    "sha256": "E383B1C48C03ED772F9F92D40A3002F90F79DB785AFF31B9777D9DF31E0DB7E8"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\security\\config\\SecurityConfig.java",
+    "sha256": "55F16E03AA82E7C7DCE7E5B4B87CE69F8F4051D54038B59B800225EF087202D3"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\security\\filter\\JwtAuthenticationFilter.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\security\\handler\\RestAccessDeniedHandler.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\security\\handler\\RestAuthenticationEntryPoint.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\security\\jwt\\JwtAuthenticationFilter.java",
+    "sha256": "98D764A5BBD16927DF8A239CC2668E58AA5F371E117299AC7C507C66E6C0DDB7"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\security\\jwt\\JwtProperties.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\security\\jwt\\JwtTokenProvider.java",
+    "sha256": "9448548C18BC265BC4FFA903EE5FFBD8BCE080EA05179783707CC15A10372179"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\security\\principal\\CurrentUserProvider.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\security\\principal\\CustomUserDetails.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\security\\principal\\CustomUserDetailsService.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\seller\\controller\\SellerController.java",
+    "sha256": "40E6B2997F0755F1D3F2AFAD5958247F3EED6233C9B312C10560111EB2752A36"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\seller\\dto\\request\\RejectSellerRequest.java",
+    "sha256": "C634A4CCECCE891A916AB9206D2DBF6EFAC408F9AB84577D136EBF89FF2EA7D1"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\seller\\dto\\request\\UpdateStoreRequest.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\seller\\dto\\response\\SellerResponse.java",
+    "sha256": "B0585349C93EAFF2DEA8F522101008C13EC8E6B54306977590A5780746E700DA"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\seller\\entity\\Seller.java",
+    "sha256": "0D9DC0F3DD238F959449FE66D7FC6C82C5270C8735698B5D13184E50B13CEA2A"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\seller\\entity\\SellerStatus.java",
+    "sha256": "91BEBB9E6E6677C9681ABFD4DE9B2680E4F9058506E80A56101FDEC3B11F6070"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\seller\\exception\\StoreAccessDeniedException.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\seller\\mapper\\SellerMapper.java",
+    "sha256": "4A282F211D0D3B64D8BCB2F5C5166F9992EFD1BE229C6F2FCD20FA9B73334827"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\seller\\repository\\SellerRepository.java",
+    "sha256": "17F679A213DFF5E99482DC97CF1C8A914D4C8AEAA0329FA22640905062E0D81E"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\seller\\service\\SellerService.java",
+    "sha256": "CC29F83B5425BE3CE037E9047AB92C6F2272B7BFEF76B375E1D1D29189B069C9"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\storage\\config\\StorageProperties.java",
+    "sha256": "2B07911787F45A48D4BCBBA89B58ABAE5C5ED8DA73459BBA38E2A2ED8699DD0E"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\storage\\controller\\LocalStorageController.java",
+    "sha256": "4585DED41B81067A55EEF384C23407FA359B36A77EDB2A1F4227384F2F0CFFCD"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\storage\\dto\\StoredObjectResponse.java",
+    "sha256": "D7FDF5B77070F9DFF84512D95CC83E2D14DF51DC5CF178F6ECEF813A423E5BC5"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\storage\\exception\\StorageOperationException.java",
+    "sha256": "B61EF7A8B59A0AC19488AD9A733E97923E0FFFA20DC8198887A66E7F2E7B35FD"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\storage\\service\\LocalObjectStorageService.java",
+    "sha256": "728F7D8BEB18D9F7DBD98BDC209AACFB8F9DB8D42A850561E54DB0C86FFBB72E"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\storage\\service\\MinioObjectStorageService.java",
+    "sha256": "12A21AA8E9AE5098AEDE87E94E1BC05E7ECE0A9DEE218F76564A94A8F62011BF"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\storage\\service\\ObjectStorageService.java",
+    "sha256": "54209CA4EBA16F2CF5CFA5167407E832ABCA7BA9AC1D99327FB1C83DADFE2EBF"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\store\\controller\\StoreController.java",
+    "sha256": "0025B261AFEE6EDDB4A53BF57B26404768F5692DE6DF40A78962B76CA4D229A7"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\store\\dto\\request\\CreateStoreRequest.java",
+    "sha256": "FFAF73F26D4589D657CB87FE93B1C35142DCCF7A1A531AB663E896F91422FAC9"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\store\\dto\\request\\UpdateStoreRequest.java",
+    "sha256": "F0D16702E362B5EA320FA69C22999D451D56F32A6219622D8A6DEA60E550777A"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\store\\dto\\response\\StoreResponse.java",
+    "sha256": "11924112C8601D7BA08FC969F88E92188D4376F0034D02C8E0CF511E05DA1481"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\store\\entity\\Store.java",
+    "sha256": "56F9FEA17785FB7F17362489489BA8C19F0570085C34B2D5B625A470ED8DD154"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\store\\mapper\\StoreMapper.java",
+    "sha256": "66AC5F4337D379B20AD8A054171B56075B9E30036101A2D6DAD7F8A3983549A3"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\store\\repository\\StoreRepository.java",
+    "sha256": "AD688596DE6A769939DAE9A37A686DF283E8AB182D13E02B92C7CEE6A67BD98D"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\store\\service\\StoreService.java",
+    "sha256": "FFB397596404C68802795BDF8903688A25DB9BFA534A4480A8064FB804BD6A46"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\user\\controller\\UserController.java",
+    "sha256": "47B123C9A5907B6983C2B2699C69CC53D215E0AFC0398B5FFF444AC4388F14E3"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\user\\dto\\request\\UpdateProfileRequest.java",
+    "sha256": "DA1897DA2B31B90791A81F5B65F7D42EFEAD8258EF855FD0E11915DA18304B77"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\user\\dto\\response\\UserProfileResponse.java",
+    "sha256": "54E1E00FD0FFE2A77D81D2AD778F6C4DBDA5E0C783D5C6838F988FC9C4C2CE35"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\user\\entity\\Role.java",
+    "sha256": "8DDABC7456B9A476988967498D9758775A50320594DCF21C2F6FFA90C2D31B49"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\user\\entity\\RoleName.java",
+    "sha256": "3FE073D9AD89AE37A426BBE08783DBA6B20FABFACB379D37BA3AC83140E1C915"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\user\\entity\\User.java",
+    "sha256": "84A9C493C9E2C20D01B99D5CBEBF5BCD503BA639AF277A7EBFCFE8A687985F24"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\user\\entity\\UserStatus.java",
+    "sha256": "AD4B85778CAFFD37BF56062D4EDBB099E35654B856C0F46355ED79392A1B2AB0"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\user\\exception\\UserAlreadyExistsException.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\user\\mapper\\UserMapper.java",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\user\\repository\\RoleRepository.java",
+    "sha256": "C6C7DD582FE5CAFB419A47632EBCB6102C92339E1FBEC80F623F0446E619F223"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\user\\repository\\UserRepository.java",
+    "sha256": "1D8C4858575C3F724B8350D0D4F24F086EC1F285FC629857D8784F25CF562C09"
+  },
+  {
+    "path": "src\\main\\java\\com\\marketplace\\user\\service\\UserService.java",
+    "sha256": "FFE86E40136A00AE0E907AC5B1E0598C7D6567299A5691FC3E68F6B84A1490E5"
+  },
+  {
+    "path": "src\\main\\resources\\application-local.yml",
+    "sha256": "A658C3D2252976A19B69CC8B0B41C33F3FDCF4E7215C9C9A94AFEC3456F09257"
+  },
+  {
+    "path": "src\\main\\resources\\application-test.yml",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\resources\\application.yml",
+    "sha256": "4FE104DC6F3370395907012DB5765820DFD1B8D344C0A5C79698FCB30F459407"
+  },
+  {
+    "path": "src\\main\\resources\\logback-spring.xml",
+    "sha256": "A48AB056E755874854A9B657AB15E57006C9BFFCAAED46AA1714B2DCA51B65A6"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\.gitkeep",
+    "sha256": "01BA4719C80B6FE911B091A7C05124B64EEECE964E09C058EF8F9805DACA546B"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V1__create_identity_tables.sql",
+    "sha256": "215F864B2BDCF11B8A9457AD3D84C82B8DC2861051C8D04555E0BEB788116005"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V10__create_carts.sql",
+    "sha256": "41ED0B4B91BF6F68A8CC8FF7A7AB169A18862D2BA86BB5667A4ABAFA21BB5C62"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V11__create_cart_items.sql",
+    "sha256": "9EE46AA716F80843E69605EC342C9558EA2E3E3985072C66858319FBE611EAC8"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V12__backfill_product_inventories.sql",
+    "sha256": "AB64FE3807A38336A0E666693B2D6F420EB80F5CF60E6EEFBE8329035E0B05F5"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V13__create_orders.sql",
+    "sha256": "027DE2659EB373BC2DF6955F987E52BCB9ADC4CE9EC86C3BE40824590057EF35"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V14__create_order_items.sql",
+    "sha256": "9974E2F896FE37D71A0F7E538E1D72DCF883DF2011C565DBA20A085E29E8B443"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V15__add_order_version.sql",
+    "sha256": "CB8D5BDACE955911A98D7C4EA5B86D0521FC1324048E3517CFC3FC77C97C5733"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V16__create_seller_orders.sql",
+    "sha256": "72066B0AD11A1FC978B7C895AF35050F7C71C573A872C5716845C710C3D5A926"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V17__create_stock_reservations.sql",
+    "sha256": "E9A99F433C5BB9ECC00BE5D86C3486214C56AF79BE124BDD84FE6B0D758853F8"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V18__finish_order_transition.sql",
+    "sha256": "0C4C789E3537C6BD59A5DA98498466E1527FE9AF8986D78DC90889990815B00B"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V19__create_order_and_inventory_history.sql",
+    "sha256": "994DFCCAD7F7A5593813813088AA635B149E780684871D553B6555B3E30B546D"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V2__create_categories_table.sql",
+    "sha256": "CDA1F006892F27B7D736AB6329059C32255824504648EBA269323D7D1FA14002"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V20__create_refresh_tokens.sql",
+    "sha256": "DBF547D7708D955D4D17CD441347BB3D4454B60CEB99355EE9E07FC07DB03592"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V21__create_favorites.sql",
+    "sha256": "2AB06C4578E46D2529B309FE3C3DF3867DA069DBAA83AD70DCC0718B3B9A66EA"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V22__add_user_profile.sql",
+    "sha256": "FF7E74A03F694B5F9C21B0672A02922CEF183E6D751C34029D2FD6368C57C665"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V23__create_reviews.sql",
+    "sha256": "41444B38E60B0885A058D89BBB698F95876A61F32CCFA127DDAB258511A54A31"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V24__create_promocodes.sql",
+    "sha256": "A220ED5CDC658E41AEBE231FAB9E6C61391C9A7782CF8776EFF00783602AF4FF"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V25__store_approval_and_admin_audit.sql",
+    "sha256": "C79568C8F26E55B70118E612DE7EDF2B18E45F70B745CB7C453BBCF618CA83A3"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V26__create_product_variants.sql",
+    "sha256": "FCFAD1C36FD412C0CC91F1168599B8BFC3D610FC74BD86F52DB04C81A3AE8571"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V27__add_order_delivery_details.sql",
+    "sha256": "8FB71B27D3A8451549891C39C3FA5BBDC9CDB19AA3D2715AB097A7907C42E9A2"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V28__create_delivery_regions.sql",
+    "sha256": "4A74A2292B2645967EAA84273F297429D8B803746FBD605B9EF1B57358CF64B7"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V29__create_store_delivery_zones.sql",
+    "sha256": "2F356A2418F2842F1661D0F6803DE2A5B5FC05C80BF3BF9D19B633D9A00386CB"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V3__create_sellers_table.sql",
+    "sha256": "7CC682A31BD7F22BA5AFA4E5A8D79CFE77502B2874BC037D426DAD4C6B22BE86"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V30__add_seller_order_delivery_snapshot.sql",
+    "sha256": "A7C8B7086E82924928D28E39255D1B7D995ABAADC85543FCD28A2BB8C4AB4276"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V31__add_order_delivery_total_amount.sql",
+    "sha256": "10DAFB3001A3E6D92D4D87BB58FA998FA5C8B79870B6A992A87AF5F15C33F6A5"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V32__add_order_pricing_allocation.sql",
+    "sha256": "A59839FA049F2DAC5566A89F5D5C6A08F6F83DE04356733C29F8FEED48B22C33"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V33__create_shipments.sql",
+    "sha256": "C79F94DF2E6825973D59648531862DF9437952CBF4F792D415E70E77711A0C27"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V34__create_shipment_status_history.sql",
+    "sha256": "E08A43C6DF250F68AE30854E31E6AC1CA07003C20AE87A7D11D5CF624D83C23B"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V35__synchronize_order_delivery_status.sql",
+    "sha256": "084C33E884613257CAA4DC6DD154F4B944951A64698581A4126F10EF7EC25E33"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V4__create_stores.sql",
+    "sha256": "1CE41F47F8DD45A89C5FF14B1F1181AF8846DA757C0A6A0A855108041E709A0D"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V5__create_products.sql",
+    "sha256": "1301DCE9B8F1CA1C7C691C830A3833B445868307D53341CC5085BA8D08F57EBA"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V6__add_product_price.sql",
+    "sha256": "ADED1C722AC423255970FCCC9978C91FE60C7BAA66791785587A1B72F8B0E32D"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V7__create_product_images.sql",
+    "sha256": "01AD0389B728AB2BD441F0C0480D20AD9D20C6CA42D47854FEF28BB3C867073F"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V8__create_inventories.sql",
+    "sha256": "2C3B611190831DCEA25618F13135A7687654B2337A5731AEA61DBB15B7F5C3B3"
+  },
+  {
+    "path": "src\\main\\resources\\db\\migration\\V9__add_inventory_version.sql",
+    "sha256": "E1CA9227F7E8B291F3DBF97AD426A7DC53B47057F13D7E3B643DBB5EB5632508"
+  }
+]

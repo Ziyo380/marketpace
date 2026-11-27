@@ -1,0 +1,11 @@
+.shipment-history { margin-top: 1rem; padding: 1rem; border: 1px solid var(--border-control); border-radius: .8rem; }
+.shipment-history header { display: flex; align-items: center; justify-content: space-between; gap: .5rem; flex-wrap: wrap; }
+.shipment-history h4 { margin: 0; }
+.shipment-history ol { list-style: none; padding: .5rem 0 0 1rem; margin: 0; }
+.shipment-history li { position: relative; display: grid; gap: .3rem; padding: 0 0 1.3rem 1.2rem; border-left: 2px solid var(--border-control); overflow-wrap: anywhere; }
+.shipment-history li::before { content: ''; position: absolute; left: -.35rem; top: .25rem; width: .6rem; height: .6rem; border-radius: 50%; background: var(--color-gold); }
+.shipment-history li:last-child { padding-bottom: .2rem; }
+.shipment-history time, .shipment-history li > span { color: var(--color-muted); font-size: .75rem; }
+.shipment-history strong { color: var(--color-ivory); font-size: .9rem; }
+.shipment-history button { border: 1px solid var(--border-control); padding: .45rem .65rem; border-radius: .5rem; background: transparent; color: var(--color-ivory); cursor: pointer; }
+.shipment-history p { margin: .4rem 0; }

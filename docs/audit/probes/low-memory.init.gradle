@@ -1,0 +1,8 @@
+allprojects {
+    tasks.withType(Test).configureEach {
+        maxHeapSize = "384m"
+        maxParallelForks = 1
+        jvmArgs "-XX:ActiveProcessorCount=2", "-XX:ReservedCodeCacheSize=64m"
+        systemProperty "spring.test.context.cache.maxSize", "2"
+    }
+}

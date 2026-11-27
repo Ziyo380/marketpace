@@ -1,0 +1,114 @@
+[
+  {
+    "name": "com.marketplace.audit.BackendAuditProbeTest",
+    "tests": 12,
+    "failures": 6,
+    "skipped": 0,
+    "cases": [
+      {
+        "name": "sellerCannotReadAnotherStoresProduct()",
+        "failure": ""
+      },
+      {
+        "name": "suspendedSellerMustNotCreateVariants()",
+        "failure": "java.lang.AssertionError: Status expected:<422> but was:<201>"
+      },
+      {
+        "name": "imageMustRemainReadableWhenDatabaseDeletionRollsBack()",
+        "failure": "org.opentest4j.AssertionFailedError: [Rollback must not lose the image file] \r\nExpecting value to be true but was false"
+      },
+      {
+        "name": "checkoutMustRejectCategoryDisabledAfterCartWasFilled()",
+        "failure": "java.lang.AssertionError: \r\nExpecting code to raise a throwable."
+      },
+      {
+        "name": "httpJourneyFromRegistrationToDeliveryKeepsOwnershipAndHistory()",
+        "failure": ""
+      },
+      {
+        "name": "anonymousCannotReadOrders()",
+        "failure": ""
+      },
+      {
+        "name": "foreignCustomerShipmentAccessMustReturn403()",
+        "failure": "java.lang.AssertionError: Status expected:<403> but was:<500>"
+      },
+      {
+        "name": "customerCannotReadAdminStatistics()",
+        "failure": ""
+      },
+      {
+        "name": "variantPriceWithThreeDecimalsMustBeRejected()",
+        "failure": "java.lang.AssertionError: Status expected:<400> but was:<201>"
+      },
+      {
+        "name": "invalidJwtCannotReadOrders()",
+        "failure": ""
+      },
+      {
+        "name": "blockedUserCannotReuseValidAccessToken()",
+        "failure": ""
+      },
+      {
+        "name": "validProductAndVariantNamesMustFitOrderSnapshot()",
+        "failure": "java.lang.AssertionError: \r\nExpecting code not to raise a throwable but caught\r\n  \"org.springframework.dao.DataIntegrityViolationException: could not execute statement [ERROR: value too long for type character varying(255)] [insert into order_items (created_at,order_id,product_id,product_name,quantity,seller_order_id,sku,subtotal,unit_price,updated_at,variant_id,id) values (?,?,?,?,?,?,?,?,?,?,?,?)]; SQL [insert into order_items (created_at,order_id,product_id,product_name,quantity,seller_order_id,sku,subtotal,unit_price,updated_at,variant_id,id) values (?,?,?,?,?,?,?,?,?,?,?,?)]\r\n\tat org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:297)\r\n\tat org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:256)\r\n\tat org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241)\r\n\tat org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:560)\r\n\tat org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)\r\n\tat org.springframework.dao.support.DataAccessUtils.translat"
+      }
+    ]
+  },
+  {
+    "name": "com.marketplace.audit.MigrationUpgradeAuditTest",
+    "tests": 1,
+    "failures": 0,
+    "skipped": 0,
+    "cases": [
+      {
+        "name": "upgradesHistoricalOrdersFromV30WithoutInventingDiscountAllocations()",
+        "failure": ""
+      }
+    ]
+  },
+  {
+    "name": "com.marketplace.delivery.service.ShipmentHistoryPostgresAuditTest",
+    "tests": 9,
+    "failures": 0,
+    "skipped": 0,
+    "cases": [
+      {
+        "name": "historyFailureRollsBackStatusAndVersion()",
+        "failure": ""
+      },
+      {
+        "name": "aggregateHistoryFailureRollsBackShipmentHistoryAndOrder()",
+        "failure": ""
+      },
+      {
+        "name": "recordsFullLifecycleAndIgnoresRepeatedRequests()",
+        "failure": ""
+      },
+      {
+        "name": "foreignSellerAndCustomerCannotReadHistory()",
+        "failure": ""
+      },
+      {
+        "name": "deliveredPartDoesNotCompleteOrderWithPendingPartAndExpiryFinishesRemainingWork()",
+        "failure": ""
+      },
+      {
+        "name": "recordRequiresExistingTransaction()",
+        "failure": ""
+      },
+      {
+        "name": "failedDeliveryRecordsReasonOnce()",
+        "failure": ""
+      },
+      {
+        "name": "parallelDeliveriesOfDifferentStoresProduceOneCompletedOrder()",
+        "failure": ""
+      },
+      {
+        "name": "historyFailureRollsBackShipmentCreation()",
+        "failure": ""
+      }
+    ]
+  }
+]

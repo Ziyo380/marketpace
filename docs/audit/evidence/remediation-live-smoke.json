@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-19",
+  "backend": "http://127.0.0.1:8080",
+  "appliedMigrations": [36, 37],
+  "validatedMigrationCount": 37,
+  "showcaseVerification": {
+    "script": "scripts/verify-showcase.ps1",
+    "exitCode": 0,
+    "orders": 8,
+    "shipments": 7,
+    "historyEvents": 30,
+    "publicShowcaseProductsWithReadableImages": 32
+  },
+  "foreignShipmentAccess": {"status": 403, "code": "FORBIDDEN_OPERATION"},
+  "customerFrontendStatus": 200,
+  "dashboardFrontendStatus": 200,
+  "scope": "Existing data read through live HTTP. Logins issue sessions; no checkout, image deletion or order mutations against the working database."
+}
